@@ -1,0 +1,25 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "my calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannakot62/calculator.git"
+  },
+  "keywords": [
+    "calculator"
+  ],
+  "author": "2kotyagova6@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hannakot62/calculator/issues"
+  },
+  "homepage": "https://github.com/hannakot62/calculator#readme",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
+}
