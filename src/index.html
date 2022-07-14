@@ -1,94 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <title>calculator by hannakot62</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,800&display=swap"
-        rel="stylesheet">
-    <title>
-        calculator by hannakot62 </title>
-</head>
-
-
-<body>
+  <body>
     <div class="main-container">
-        <div class="text-container">
-            <p id="hehe">Need to calculate something?</p>
-            <button class="change-theme">Change Theme<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                        d="M11.25 4.75L8.75 7L11.25 9.25"></path>
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                        d="M12.75 19.25L15.25 17L12.75 14.75"></path>
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                        d="M9.75 7H13.25C16.5637 7 19.25 9.68629 19.25 13V13.25"></path>
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                        d="M14.25 17H10.75C7.43629 17 4.75 14.3137 4.75 11V10.75"></path>
-                </svg>
-            </button>
-        </div>
-
-        <div class="calculator-container">
-            <div class="task-result">2362737826372672</div>
-            <hr class="border">
-            <div class="history">bla bla bla</div>
-            <table class="main-part">
-                <tr>
-                    <td><button class="memory">MC</button></td>
-                    <td><button class="table-btn">x<span>2</span></button></td>
-                    <td><button class="table-btn">√x</button></td>
-                    <td><button class="table-btn">×</button></td>
-                    <td><button class="calc-number">1</button></td>
-                    <td><button class="calc-number">2</button></td>
-                    <td><button class="calc-number">3</button></td>
-                    <td><button class="calc-simple">+</button></td>
-                </tr>
-                <tr>
-                    <td><button class="memory">MC</button></td>
-                    <td><button class="table-btn">x<span>2</span></button></td>
-                    <td><button class="table-btn"><span>3</span>√x</button></td>
-                    <td><button class="table-btn">×</button></td>
-                    <td><button class="calc-number">1</button></td>
-                    <td><button class="calc-number">2</button></td>
-                    <td><button class="calc-number">3</button></td>
-                    <td><button class="calc-simple">+</button></td>
-                <tr>
-                    <td><button class="memory">MC</button></td>
-                    <td><button class="table-btn">x<span>2</span></button></td>
-                    <td><button class="table-btn"><span>y</span>√x</button></td>
-                    <td><button class="table-btn">×</button></td>
-                    <td><button class="calc-number">1</button></td>
-                    <td><button class="calc-number">2</button></td>
-                    <td><button class="calc-number">3</button></td>
-                    <td><button class="calc-simple">+</button></td>
-                </tr>
-                <tr>
-                    <td><button class="memory">MC</button></td>
-                    <td><button class="table-btn">x<span>2</span></button></td>
-                    <td><button class="table-btn">√x</button></td>
-                    <td><button class="table-btn">×</button></td>
-                    <td><button class="calc-number">1</button></td>
-                    <td><button class="calc-number">2</button></td>
-                    <td><button class="calc-number">3</button></td>
-                    <td><button class="calc-simple" id="equals">=</button></td>
-                </tr>
-            </table>
-            <div class="clear-button-container">
-                <button class="clear">Clear</button>
-
-            </div>
-        </div>
-
-        <button class="clear-a-symbol"><svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M9.25 4.75L4.75 9L9.25 13.25"></path>
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M5.5 9H15.25C17.4591 9 19.25 10.7909 19.25 13V19.25"></path>
-            </svg>
+      <div class="text-container">
+        <p id="hehe">Need to calculate something?</p>
+        <button class="change-theme" id="themeBTN">
+          Change Theme<svg
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M11.25 4.75L8.75 7L11.25 9.25"
+            ></path>
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M12.75 19.25L15.25 17L12.75 14.75"
+            ></path>
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9.75 7H13.25C16.5637 7 19.25 9.68629 19.25 13V13.25"
+            ></path>
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M14.25 17H10.75C7.43629 17 4.75 14.3137 4.75 11V10.75"
+            ></path>
+          </svg>
         </button>
-    </div>
-</body>
+      </div>
 
+      <div class="calculator-container">
+        <div class="task-result">2362737826372672</div>
+        <hr class="border" />
+        <div class="history">bla bla bla</div>
+        <table class="main-part">
+          <tr>
+            <td><button class="memory">MC</button></td>
+            <td>
+              <button class="table-btn">x<span>2</span></button>
+            </td>
+            <td><button class="table-btn">√x</button></td>
+            <td><button class="table-btn">×</button></td>
+            <td><button class="calc-number">1</button></td>
+            <td><button class="calc-number">2</button></td>
+            <td><button class="calc-number">3</button></td>
+            <td><button class="calc-simple">+</button></td>
+          </tr>
+          <tr>
+            <td><button class="memory">M+</button></td>
+            <td>
+              <button class="table-btn">x<span>3</span></button>
+            </td>
+            <td>
+              <button class="table-btn"><span>3</span>√x</button>
+            </td>
+            <td><button class="table-btn">/</button></td>
+            <td><button class="calc-number">4</button></td>
+            <td><button class="calc-number">5</button></td>
+            <td><button class="calc-number">6</button></td>
+            <td><button class="calc-simple">-</button></td>
+          </tr>
+
+          <tr>
+            <td><button class="memory">M-</button></td>
+            <td>
+              <button class="table-btn">x<span>y</span></button>
+            </td>
+            <td>
+              <button class="table-btn"><span>y</span>√x</button>
+            </td>
+            <td><button class="table-btn">%</button></td>
+            <td><button class="calc-number">7</button></td>
+            <td><button class="calc-number">8</button></td>
+            <td><button class="calc-number">9</button></td>
+            <td><button class="calc-simple">+/-</button></td>
+          </tr>
+          <tr>
+            <td><button class="memory">MR</button></td>
+            <td>
+              <button class="table-btn">10<span>x</span></button>
+            </td>
+            <td><button class="table-btn">x!</button></td>
+            <td><button class="table-btn">1/x</button></td>
+            <td><button class="calc-simple">(</button></td>
+            <td><button class="calc-simple">)</button></td>
+            <td><button class="calc-number">0</button></td>
+            <td><button class="calc-simple" id="equals">=</button></td>
+          </tr>
+        </table>
+        <div class="clear-button-container">
+          <button class="clear">Clear</button>
+        </div>
+      </div>
+
+      <button class="clear-a-symbol">
+        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M9.25 4.75L4.75 9L9.25 13.25"
+          ></path>
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            d="M5.5 9H15.25C17.4591 9 19.25 10.7909 19.25 13V19.25"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </body>
 </html>
