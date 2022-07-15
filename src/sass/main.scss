@@ -50,19 +50,31 @@ button span {
   font-size: x-small;
   vertical-align: text-top;
 }
+// надо порешать это выражение дебильное
 .task-result {
-  text-align: right;
-  font-size: 1.7rem;
+  // text-align: right;
+  font-size: 1.6rem;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: right;
 }
+.task-result-container {
+  overflow: scroll;
+  height: 4rem;
+  width: 30rem;
+}
+// вот так
 .history {
   text-align: right;
   margin-bottom: 0.5rem;
+  height: 1.3rem;
 }
 .clear-a-symbol {
   align-self: baseline;
   margin-left: 1rem;
   margin-right: 1.6rem;
-  margin-top: 2rem;
+  margin-top: 6rem;
   font-family: "Montserrat", sans-serif;
   padding: 0.3rem, 0.5rem;
   padding-top: 0.4rem;
@@ -116,9 +128,7 @@ button {
   border-radius: 2rem;
   font-weight: 800;
 }
-.task-result {
-  font-size: 1.6rem;
-}
+
 .calculator-container {
   margin-left: 1.6rem;
   padding-top: 2rem;
@@ -193,7 +203,8 @@ html.light .clear:hover {
 .memory,
 .table-btn,
 .calc-number,
-.calc-simple {
+.calc-simple,
+#equals {
   font-family: "Montserrat", sans-serif;
   border-radius: 50%;
   font-size: larger;
@@ -219,6 +230,10 @@ html.dark .calc-simple {
   border: 0.1rem solid #fff;
   color: #fff;
 }
+html.dark #equals {
+  border: 0.1rem solid #fff;
+  color: #fff;
+}
 
 html.light .memory {
   border: 0.1rem solid #322717;
@@ -236,11 +251,15 @@ html.light .calc-simple {
   border: 0.1rem solid #322717;
   color: #322717;
 }
-
+html.light #equals {
+  border: 0.1rem solid #322717;
+  color: #322717;
+}
 html.dark .memory:hover,
 .table-btn:hover,
 .calc-number:hover,
-.calc-simple:hover {
+.calc-simple:hover,
+#equals:hover {
   transition: 0.5s ease;
   cursor: pointer;
   font-size: medium;
@@ -264,13 +283,15 @@ html.dark .memory {
 html.dark .calc-simple {
   background-color: #2f273c;
 }
+
 html.dark .table-btn {
   background-color: #2f1517;
 }
 html.light .memory:hover,
 .table-btn:hover,
 .calc-number:hover,
-.calc-simple:hover {
+.calc-simple:hover,
+#equals:hover {
   transition: 0.5s ease;
   cursor: pointer;
   font-size: medium;
@@ -295,4 +316,17 @@ html.light .calc-simple {
 }
 html.light .table-btn {
   background-color: #ffd681;
+}
+// тут хер пойми что
+::-webkit-scrollbar {
+  width: 0.3rem; /* width of the entire scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* color of the tracking area */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(157, 157, 157); /* color of the scroll thumb */
+  border-radius: 50%; /* roundness of the scroll thumb */
 }

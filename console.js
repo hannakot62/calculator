@@ -1,4 +1,3 @@
-
 export function myConsole() {
-    console.log("console js is working")
+  console.log("console js is working");
 }

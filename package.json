@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "dev": "webpack serve --open --config webpack.config.js "
+    "dev": "webpack serve --open --config webpack.config.js ",
+    "test": "eslint",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,12 @@
     "webpack-cli": "^4.10.0"
   },
   "devDependencies": {
+    "eslint": "^8.19.0",
+    "husky": "^8.0.1",
+    "prettier": "2.7.1",
     "webpack-dev-server": "^4.9.3"
+  },
+  "hooks": {
+    "pre-commit": "npm test git add ."
   }
 }
