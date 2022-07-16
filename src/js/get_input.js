@@ -2,7 +2,7 @@ let tableButtons = document.getElementsByClassName("table-btn");
 for (let i = 0; i < tableButtons.length; i++) {
   let item = tableButtons[i];
   item.addEventListener("click", () => {
-    taskResult.innerHTML += buttons[event.target.id];
+    taskResult.innerHTML += " " + buttons[event.target.id] + " ";
   });
 }
 
@@ -18,7 +18,7 @@ let simpleButtons = document.getElementsByClassName("calc-simple");
 for (let i = 0; i < simpleButtons.length; i++) {
   let item = simpleButtons[i];
   item.addEventListener("click", () => {
-    taskResult.innerHTML += buttons[event.target.id];
+    taskResult.innerHTML += " " + buttons[event.target.id] + " ";
   });
 }
 let buttons = {

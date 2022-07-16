@@ -50,21 +50,20 @@ button span {
   font-size: x-small;
   vertical-align: text-top;
 }
-// надо порешать это выражение дебильное
 .task-result {
-  // text-align: right;
   font-size: 1.6rem;
-
   display: flex;
-  align-items: flex-end;
   justify-content: right;
+  align-items: flex-end;
+  word-wrap: normal;
+  text-align: right;
 }
 .task-result-container {
   overflow: scroll;
-  height: 4rem;
+
   width: 30rem;
+  height: 6rem;
 }
-// вот так
 .history {
   text-align: right;
   margin-bottom: 0.5rem;
@@ -317,9 +316,9 @@ html.light .calc-simple {
 html.light .table-btn {
   background-color: #ffd681;
 }
-// тут хер пойми что
 ::-webkit-scrollbar {
-  width: 0.3rem; /* width of the entire scrollbar */
+  width: 0.2rem; /* width of the entire scrollbar */
+  height: 0.2rem;
 }
 
 ::-webkit-scrollbar-track {
@@ -327,6 +326,6 @@ html.light .table-btn {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(157, 157, 157); /* color of the scroll thumb */
-  border-radius: 50%; /* roundness of the scroll thumb */
+  background-color: rgb(95, 95, 95); /* color of the scroll thumb */
+  border-radius: 3rem; /* roundness of the scroll thumb */
 }

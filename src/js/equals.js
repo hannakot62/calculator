@@ -4,7 +4,9 @@ let equals = document.getElementById("equals");
 equals.addEventListener("click", () => {
   let task = document.getElementById("taskResult").innerHTML;
   if (task.length > 0) {
-    let result = calculate(task);
+    // task = task.split(" ");
+    // task = task.join("");
+    let result = calculate(task.replace(/\s/g, ""));
     document.getElementById("taskResult").innerHTML = result;
     document.getElementById("history").innerHTML = task;
   }
