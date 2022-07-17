@@ -68,6 +68,10 @@ button span {
   text-align: right;
   margin-bottom: 0.5rem;
   height: 1.3rem;
+  width: 30rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .clear-a-symbol {
   align-self: baseline;
