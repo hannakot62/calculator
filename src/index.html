@@ -54,91 +54,97 @@
           </svg>
         </button>
       </div>
+      <div class="calculator">
+        <div class="calculator-container">
+          <div class="task-result-container">
+            <div class="task-result" id="taskResult">
+              ппорп оеон пп лпоеонен нленкукнукк енен4еуцыа геокнеснк
+              онегнеонкенк онек
+            </div>
+          </div>
+          <hr class="border" />
+          <div class="history" id="history">
+            трпр лгногнег гнегнекег нлгегенкв ампрпнккн ноегнекнк
+          </div>
+          <table class="main-part" id="tableButtons">
+            <tr>
+              <td><button class="memory">MC</button></td>
+              <td>
+                <button class="table-btn">x<span>2</span></button>
+              </td>
+              <td><button class="table-btn">√x</button></td>
+              <td><button class="table-btn">×</button></td>
+              <td><button class="calc-number" id="one">1</button></td>
+              <td><button class="calc-number" id="two">2</button></td>
+              <td><button class="calc-number" id="three">3</button></td>
+              <td><button class="calc-simple" id="plus">+</button></td>
+            </tr>
+            <tr>
+              <td><button class="memory">M+</button></td>
+              <td>
+                <button class="table-btn">x<span>3</span></button>
+              </td>
+              <td>
+                <button class="table-btn"><span>3</span>√x</button>
+              </td>
+              <td><button class="table-btn">/</button></td>
+              <td><button class="calc-number">4</button></td>
+              <td><button class="calc-number">5</button></td>
+              <td><button class="calc-number">6</button></td>
+              <td><button class="calc-simple" id="minus">-</button></td>
+            </tr>
 
-      <div class="calculator-container">
-        <div class="task-result-container">
-          <div class="task-result" id="taskResult"></div>
+            <tr>
+              <td><button class="memory">M-</button></td>
+              <td>
+                <button class="table-btn">x<span>y</span></button>
+              </td>
+              <td>
+                <button class="table-btn"><span>y</span>√x</button>
+              </td>
+              <td><button class="table-btn">%</button></td>
+              <td><button class="calc-number">7</button></td>
+              <td><button class="calc-number">8</button></td>
+              <td><button class="calc-number">9</button></td>
+              <td><button class="calc-simple">+/-</button></td>
+            </tr>
+            <tr>
+              <td><button class="memory">MR</button></td>
+              <td>
+                <button class="table-btn">10<span>x</span></button>
+              </td>
+              <td><button class="table-btn">x!</button></td>
+              <td><button class="table-btn">1/x</button></td>
+              <td><button class="calc-simple" id="leftBracket">(</button></td>
+              <td><button class="calc-simple" id="rightBracket">)</button></td>
+              <td><button class="calc-number">0</button></td>
+              <td><button id="equals">=</button></td>
+            </tr>
+          </table>
+          <div class="clear-button-container">
+            <button class="clear" id="clearBtn">Clear</button>
+          </div>
         </div>
-        <hr class="border" />
-        <div class="history" id="history"></div>
-        <table class="main-part" id="tableButtons">
-          <tr>
-            <td><button class="memory">MC</button></td>
-            <td>
-              <button class="table-btn">x<span>2</span></button>
-            </td>
-            <td><button class="table-btn">√x</button></td>
-            <td><button class="table-btn">×</button></td>
-            <td><button class="calc-number" id="one">1</button></td>
-            <td><button class="calc-number" id="two">2</button></td>
-            <td><button class="calc-number" id="three">3</button></td>
-            <td><button class="calc-simple" id="plus">+</button></td>
-          </tr>
-          <tr>
-            <td><button class="memory">M+</button></td>
-            <td>
-              <button class="table-btn">x<span>3</span></button>
-            </td>
-            <td>
-              <button class="table-btn"><span>3</span>√x</button>
-            </td>
-            <td><button class="table-btn">/</button></td>
-            <td><button class="calc-number">4</button></td>
-            <td><button class="calc-number">5</button></td>
-            <td><button class="calc-number">6</button></td>
-            <td><button class="calc-simple" id="minus">-</button></td>
-          </tr>
 
-          <tr>
-            <td><button class="memory">M-</button></td>
-            <td>
-              <button class="table-btn">x<span>y</span></button>
-            </td>
-            <td>
-              <button class="table-btn"><span>y</span>√x</button>
-            </td>
-            <td><button class="table-btn">%</button></td>
-            <td><button class="calc-number">7</button></td>
-            <td><button class="calc-number">8</button></td>
-            <td><button class="calc-number">9</button></td>
-            <td><button class="calc-simple">+/-</button></td>
-          </tr>
-          <tr>
-            <td><button class="memory">MR</button></td>
-            <td>
-              <button class="table-btn">10<span>x</span></button>
-            </td>
-            <td><button class="table-btn">x!</button></td>
-            <td><button class="table-btn">1/x</button></td>
-            <td><button class="calc-simple" id="leftBracket">(</button></td>
-            <td><button class="calc-simple" id="rightBracket">)</button></td>
-            <td><button class="calc-number">0</button></td>
-            <td><button id="equals">=</button></td>
-          </tr>
-        </table>
-        <div class="clear-button-container">
-          <button class="clear" id="clearBtn">Clear</button>
-        </div>
+        <button class="clear-a-symbol" id="clearSymbol">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M9.25 4.75L4.75 9L9.25 13.25"
+            ></path>
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+              d="M5.5 9H15.25C17.4591 9 19.25 10.7909 19.25 13V19.25"
+            ></path>
+          </svg>
+        </button>
       </div>
-
-      <button class="clear-a-symbol" id="clearSymbol">
-        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M9.25 4.75L4.75 9L9.25 13.25"
-          ></path>
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="1.5"
-            d="M5.5 9H15.25C17.4591 9 19.25 10.7909 19.25 13V19.25"
-          ></path>
-        </svg>
-      </button>
     </div>
   </body>
 </html>

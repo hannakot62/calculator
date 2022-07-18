@@ -369,7 +369,12 @@ html.light .table-btn {
   .task-result {
     font-size: 1.3rem;
   }
-  .clear-a-symbol {
-    display: none;
+  .calculator {
+    margin-left: 5rem;
   }
+}
+
+.calculator {
+  display: flex;
+  justify-content: space-between;
 }
