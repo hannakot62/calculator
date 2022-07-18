@@ -57,23 +57,20 @@
       <div class="calculator">
         <div class="calculator-container">
           <div class="task-result-container">
-            <div class="task-result" id="taskResult">
-              ппорп оеон пп лпоеонен нленкукнукк енен4еуцыа геокнеснк
-              онегнеонкенк онек
-            </div>
+            <div class="task-result" id="taskResult"></div>
           </div>
           <hr class="border" />
-          <div class="history" id="history">
-            трпр лгногнег гнегнекег нлгегенкв ампрпнккн ноегнекнк
-          </div>
+          <div class="history" id="history"></div>
           <table class="main-part" id="tableButtons">
             <tr>
               <td><button class="memory">MC</button></td>
               <td>
-                <button class="table-btn">x<span>2</span></button>
+                <button class="table-btn hard" id="square">
+                  x<span>2</span>
+                </button>
               </td>
-              <td><button class="table-btn">√x</button></td>
-              <td><button class="table-btn">×</button></td>
+              <td><button class="table-btn hard" id="radical">√x</button></td>
+              <td><button class="table-btn" id="multiply">×</button></td>
               <td><button class="calc-number" id="one">1</button></td>
               <td><button class="calc-number" id="two">2</button></td>
               <td><button class="calc-number" id="three">3</button></td>
@@ -82,42 +79,54 @@
             <tr>
               <td><button class="memory">M+</button></td>
               <td>
-                <button class="table-btn">x<span>3</span></button>
+                <button class="table-btn hard" id="cube">
+                  x<span>3</span>
+                </button>
               </td>
               <td>
-                <button class="table-btn"><span>3</span>√x</button>
+                <button class="table-btn hard" id="cubeRoot">
+                  <span>3</span>√x
+                </button>
               </td>
-              <td><button class="table-btn">/</button></td>
-              <td><button class="calc-number">4</button></td>
-              <td><button class="calc-number">5</button></td>
-              <td><button class="calc-number">6</button></td>
+              <td><button class="table-btn" id="divide">/</button></td>
+              <td><button class="calc-number" id="four">4</button></td>
+              <td><button class="calc-number" id="five">5</button></td>
+              <td><button class="calc-number" id="six">6</button></td>
               <td><button class="calc-simple" id="minus">-</button></td>
             </tr>
 
             <tr>
               <td><button class="memory">M-</button></td>
               <td>
-                <button class="table-btn">x<span>y</span></button>
+                <button class="table-btn hard" id="power">
+                  x<span>y</span>
+                </button>
               </td>
               <td>
-                <button class="table-btn"><span>y</span>√x</button>
+                <button class="table-btn hard" id="anyRoot">
+                  <span>y</span>√x
+                </button>
               </td>
-              <td><button class="table-btn">%</button></td>
-              <td><button class="calc-number">7</button></td>
-              <td><button class="calc-number">8</button></td>
-              <td><button class="calc-number">9</button></td>
-              <td><button class="calc-simple">+/-</button></td>
+              <td><button class="table-btn" id="procent">%</button></td>
+              <td><button class="calc-number" id="seven">7</button></td>
+              <td><button class="calc-number" id="eight">8</button></td>
+              <td><button class="calc-number" id="nine">9</button></td>
+              <td><button class="calc-simple" id="changeSign">+/-</button></td>
             </tr>
             <tr>
               <td><button class="memory">MR</button></td>
               <td>
-                <button class="table-btn">10<span>x</span></button>
+                <button class="table-btn hard" id="tenPower">
+                  10<span>x</span>
+                </button>
               </td>
-              <td><button class="table-btn">x!</button></td>
-              <td><button class="table-btn">1/x</button></td>
+              <td><button class="table-btn hard" id="factorial">x!</button></td>
+              <td>
+                <button class="table-btn hard" id="selfDivide">1/x</button>
+              </td>
               <td><button class="calc-simple" id="leftBracket">(</button></td>
               <td><button class="calc-simple" id="rightBracket">)</button></td>
-              <td><button class="calc-number">0</button></td>
+              <td><button class="calc-number" id="zero">0</button></td>
               <td><button id="equals">=</button></td>
             </tr>
           </table>

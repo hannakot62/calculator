@@ -57,24 +57,24 @@ function FindFirstSuperHighPriorityIndex(action) {
   return fact < pow ? fact : pow;
 }
 
-function SuperHighPriorityOperation(action, index) {
-  // выражения вида 76! 3^(+/-4)
-  let result;
-  switch (action[index]) {
-    case "!": {
-      let num = Number(action.slice(0, index));
-      result = factorial(num);
-    }
-    case "^": {
-      let base = action.slice(0, index);
-      base = Number(base);
-      let exp = action.slice(index + 2, action.length - 2);
-      exp = Number(exp);
-      result = power(base, exp);
-    }
-  }
-  return result;
-}
+// function SuperHighPriorityOperation(action, index) {
+//   // выражения вида 76! 3^(+/-4)
+//   let result;
+//   switch (action[index]) {
+//     case "!": {
+//       let num = Number(action.slice(0, index));
+//       result = factorial(num);
+//     }
+//     case "^": {
+//       let base = action.slice(0, index);
+//       base = Number(base);
+//       let exp = action.slice(index + 2, action.length - 2);
+//       exp = Number(exp);
+//       result = power(base, exp);
+//     }
+//   }
+//   return result;
+// }
 
 function simpleOperation(simple) {
   // + - / * %
@@ -105,6 +105,9 @@ function simpleOperation(simple) {
       break;
     }
     case "/": {
+      if (second === 0) {
+        throw "Нельзя делить на ноль!";
+      }
       result = first / second;
       break;
     }
@@ -362,7 +365,9 @@ function calculate(task) {
   task = SuperHighCalculationPart(task);
   task = HighCalculationPart(task);
   task = SimpleCalculationPart(task);
-
+  if (task === NaN) {
+    throw "Упс, что-то пошло не так :(";
+  }
   return task;
 }
 
@@ -382,3 +387,5 @@ console.log(calculate("9-(-2)^5+32%6")); //42,92
 console.log(calculate("66-9^(18/(-9))")); //65,9876.....
 console.log(calculate("18-3!!+49/7")); //-695
 console.log(calculate("12-5*((8-3^1.1)+45)-9!")); //-363116.258...
+console.log(calculate("2^((((5))))"));
+console.log(calculate("21211221212121+667565656556"));
