@@ -28,9 +28,15 @@ function FindFirstHighPriorityIndex(action) {
 }
 
 function factorial(num) {
+  if (String(num).includes(".")) {
+    throw "Некорректный аргумент факториала!";
+  }
   if (num < 0) {
     //надо как-то нормально обработать
     throw "Нельзя взять факториал у отрицательного числа!";
+  }
+  if (num > 21) {
+    throw "Слишком большой аргумент факториала!";
   }
   if (num <= 1) {
     return 1;
