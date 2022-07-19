@@ -2,7 +2,7 @@ import icon from "./assets/logo.png";
 // import { log } from "./js/hello";
 import "./js/change_theme.js";
 import "./sass/main.scss";
-import "./js/get_input.js";
+// import "./js/get_input.js";
 import "./js/clear_buttons.js";
 import "./js/equals.js";
 import { Button } from "./js/buttons.js";

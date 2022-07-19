@@ -1,4 +1,4 @@
-import { calculate } from "./calculate_function.js";
+// import { calculate } from "./calculate_function.js";
 
 // let equals = document.getElementById("equals");
 // equals.addEventListener("click", () => {

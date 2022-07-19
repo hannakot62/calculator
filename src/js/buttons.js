@@ -1,4 +1,7 @@
 export { Button };
+import { NumberValidator } from "./validator.js";
+import { EqualsValidator } from "./validator.js";
+import { BracketValidator } from "./validator.js";
 
 class Button {
   constructor(place, cssClass, innerHTML, id, value) {
@@ -13,13 +16,13 @@ class Button {
     //-----------------------------------
     calculatorTable.rows[place[0]].childNodes[place[1]].appendChild(this.btn);
     this.btn.addEventListener("click", () => {
-      console.log(this);
-      //   console.log(btn);
-      console.log(event.target);
       this.listenerFunction();
     });
   }
   validator() {
+    //передать класс, числа для примера
+    let valid = new EqualsValidator(this.value, this.cssClass, this.id);
+    this.value = valid.validate();
     //у каждой кнопки свой
     //надо обработать таск и то, что задает кнопка
     //если надо добавить где-то умножение, скобку или отсечь последний знак -> меняю value

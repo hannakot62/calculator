@@ -1,5 +1,5 @@
-export { Validator };
-export { ButtonValidator };
+// export { Validator };
+// export { ButtonValidator };
 
 function countSymbol(str, smbl) {
   let counter = 0;
@@ -10,42 +10,42 @@ function countSymbol(str, smbl) {
   }
   return counter;
 }
-class Validator {
-  constructor(task) {
-    //проверка на закрытые скобки
-    if (countSymbol(task, "(") != countSymbol(task, ")")) {
-      throw "Закройте все скобки!";
-    }
-    //проверка на е
-    if (countSymbol(task, "e") > 0) {
-      throw "Слишком большое число :(";
-    }
-    //проверка конца выражения на знак
-    if (
-      !(
-        Number.isInteger(+task[task.length - 1]) ||
-        task[task.length - 1] === ")"
-      )
-    ) {
-      task.length = length - 1;
-    }
-    this.task = task;
-    //?????????????
-  }
-}
+// class Validator {
+//   constructor(task) {
+//     //проверка на закрытые скобки
+//     if (countSymbol(task, "(") != countSymbol(task, ")")) {
+//       throw "Закройте все скобки!";
+//     }
+//     //проверка на е
+//     if (countSymbol(task, "e") > 0) {
+//       throw "Слишком большое число :(";
+//     }
+//     //проверка конца выражения на знак
+//     if (
+//       !(
+//         Number.isInteger(+task[task.length - 1]) ||
+//         task[task.length - 1] === ")"
+//       )
+//     ) {
+//       task.length = length - 1;
+//     }
+//     this.task = task;
+//     //?????????????
+//   }
+// }
 class ButtonValidator {
   constructor(task, newSymbols) {
     task = task.split("");
-    //проверка цифра(
-    if (newSymbols[0] === "(" && Number.isInteger(+task[task.length - 1])) {
-      task = task.join("");
-      task += "*(";
-      task = task.split("");
-    }
+    // //проверка цифра(
+    // if (newSymbols[0] === "(" && Number.isInteger(+task[task.length - 1])) {
+    //   task = task.join("");
+    //   task += "*(";
+    //   task = task.split("");
+    // }
     //проверка на пустые скобки
-    else if (newSymbols === ")" && task[task.length - 1] === "(") {
-      throw "Не оставляйте пустые скобки!";
-    }
+    // else if (newSymbols === ")" && task[task.length - 1] === "(") {
+    //   throw "Не оставляйте пустые скобки!";
+    // }
     //проверка на отрицательную степень без скобок
     else if (newSymbols === "-" && task[task.length - 1] === "^") {
       task = task.join("");
