@@ -85,19 +85,19 @@ class ButtonValidator {
         throw "Не вводите два символа операции подряд!";
       }
     }
-    //добавление умножения, если после ! цифра или (
-    else if (
-      Number.isInteger(+newSymbols[0]) &&
-      task[task.length - 1] === "!"
-    ) {
-      task = task.join("");
-      task += "*" + newSymbols;
-      task = task.split("");
-    } else {
-      task = task.join("");
-      task += newSymbols;
-      task = task.split("");
-    }
+    // //добавление умножения, если после ! цифра или (
+    // else if (
+    //   Number.isInteger(+newSymbols[0]) &&
+    //   task[task.length - 1] === "!"
+    // ) {
+    //   task = task.join("");
+    //   task += "*" + newSymbols;
+    //   task = task.split("");
+    // } else {
+    //   task = task.join("");
+    //   task += newSymbols;
+    //   task = task.split("");
+    // }
 
     task = task.join("");
 

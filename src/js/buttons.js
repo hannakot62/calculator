@@ -2,9 +2,10 @@ export { Button };
 import { NumberValidator } from "./validator.js";
 import { EqualsValidator } from "./validator.js";
 import { BracketValidator } from "./validator.js";
+import { OneSignValidator } from "./validator.js";
 
 class Button {
-  constructor(place, cssClass, innerHTML, id, value) {
+  constructor(place, cssClass, innerHTML, id, value, ValidatorClass) {
     let calculatorTable = document.getElementById("tableButtons");
     this.btn = document.createElement("button");
     this.btn.innerHTML = innerHTML;
@@ -13,6 +14,7 @@ class Button {
     //-----------------------------------
     this.value = value;
     this.originalvalue = value;
+    this.ValidatorClass = ValidatorClass;
     //-----------------------------------
     calculatorTable.rows[place[0]].childNodes[place[1]].appendChild(this.btn);
     this.btn.addEventListener("click", () => {
@@ -20,8 +22,13 @@ class Button {
     });
   }
   validator() {
-    //передать класс, числа для примера
-    let valid = new EqualsValidator(this.value, this.cssClass, this.id);
+    //передать класс
+    let valid = new this.ValidatorClass(
+      this.value,
+      this.btn.className,
+      this.btn.id
+    );
+    console.log(this.valid);
     this.value = valid.validate();
     //у каждой кнопки свой
     //надо обработать таск и то, что задает кнопка

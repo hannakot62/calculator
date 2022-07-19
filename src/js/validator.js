@@ -2,6 +2,7 @@ export { Validator };
 export { NumberValidator };
 export { EqualsValidator };
 export { BracketValidator };
+export { OneSignValidator };
 
 import { calculate } from "./calculate_function.js";
 
@@ -18,8 +19,7 @@ function countSymbol(str, smbl) {
 //абстрактный класс
 class Validator {
   constructor(buttonValue, ButtonCssClass, ButtonId) {
-    //это надо вообще????
-    //или я просто не создаю эти объекты?
+    //optional
     if (this.constructor.name === "Validator") {
       throw new Error(
         `${this.constructor.name}: can not create instance of abstract class`
@@ -43,8 +43,13 @@ class NumberValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
-    console.log("work work work");
-    //добавіть )чісло
+    // )число или !число-> )*число !*число работает
+    if (
+      this.taskText[this.taskText.length - 1] === ")" ||
+      this.taskText[this.taskText.length - 1] === "!"
+    ) {
+      this.buttonValue = "*" + this.buttonValue;
+    }
     return this.buttonValue;
   }
 }
@@ -54,13 +59,13 @@ class EqualsValidator extends Validator {
   }
   validate() {
     console.log(this.task);
-    //проверка на закрытые скобки
+    //проверка на закрытые скобки работает
     if (countSymbol(this.taskText, "(") != countSymbol(this.taskText, ")")) {
-      throw "Закройте все скобки!";
+      throw new Error("Закройте все скобки!");
     }
     //проверка на е
     if (countSymbol(this.taskText, "e") > 0) {
-      throw "Слишком большое число :(";
+      throw new Error("Слишком большое число :(");
     }
     //проверка оператора без правого операнда в конце выражения
     if (
@@ -84,22 +89,35 @@ class BracketValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
-    //проверка цифра(
+    //проверка цифра(, )(, !(
     if (
       this.buttonValue === "(" &&
-      Number.isInteger(+this.taskText[this.taskText.length - 1])
+      (this.taskText[this.taskText.length - 1] === "!" ||
+        this.taskText[this.taskText.length - 1] === ")" ||
+        Number.isInteger(+this.taskText[this.taskText.length - 1]))
     ) {
-      this.buttonValue += "*(";
+      this.buttonValue = "*(";
     }
     //проверка на пустые скобки
     else if (
       this.buttonValue === ")" &&
       this.taskText[this.taskText.length - 1] === "("
     ) {
-      throw "Не оставляйте пустые скобки!";
+      throw new Error("Не оставляйте пустые скобки!");
     }
-    //проверка знак) кроме !
-
+    //проверка знак) кроме ! и )
+    //просто не берем этот знак
+    else if (
+      !(
+        Number.isInteger(+this.taskText[this.taskText.length - 1]) ||
+        this.taskText[this.taskText.length - 1] === "!" ||
+        this.taskText[this.taskText.length - 1] === ")"
+      ) &&
+      this.buttonValue === ")"
+    ) {
+      this.taskText.length = length - 1;
+    }
     return this.buttonValue;
   }
 }
+class OneSignValidator extends Validator {}

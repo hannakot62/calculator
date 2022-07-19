@@ -29,13 +29,13 @@ function FindFirstHighPriorityIndex(action) {
 
 function factorial(num) {
   if (String(num).includes(".")) {
-    throw "Некорректный аргумент факториала!";
+    throw new Error("Некорректный аргумент факториала!");
   }
   if (num < 0) {
-    throw "Нельзя взять факториал у отрицательного числа!";
+    throw new Error("Нельзя взять факториал у отрицательного числа!");
   }
   if (num > 21) {
-    throw "Слишком большой аргумент факториала!";
+    throw new Error("Слишком большой аргумент факториала!");
   }
   if (num <= 1) {
     return 1;
@@ -47,7 +47,7 @@ function power(base, exponent) {
   if (result != NaN) {
     return result;
   } else {
-    throw "Некорректное возведение в степень";
+    throw new Error("Некорректное возведение в степень");
   }
 }
 function FindFirstSuperHighPriorityIndex(action) {
@@ -111,7 +111,7 @@ function simpleOperation(simple) {
     }
     case "/": {
       if (second === 0) {
-        throw "Нельзя делить на ноль!";
+        throw new Error("Нельзя делить на ноль!");
       }
       result = first / second;
       break;
@@ -162,7 +162,7 @@ function SuperHighCalculationPart(task) {
     switch (task[superHighIndex]) {
       case "!": {
         if (task[superHighIndex - 1] === ")") {
-          throw "Нельзя найти факториал отрицательного числа!";
+          throw new Error("Нельзя найти факториал отрицательного числа!");
         }
         SuperHighResult = factorial(base);
         symbolsToDelete = baseLength + 1;
@@ -371,7 +371,10 @@ function calculate(task) {
   task = HighCalculationPart(task);
   task = SimpleCalculationPart(task);
   if (task === NaN) {
-    throw "Упс, что-то пошло не так :(";
+    throw new Error("Упс, что-то пошло не так :(");
+  }
+  if (task >= power(2, 53)) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
   }
   return task;
 }
