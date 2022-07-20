@@ -370,7 +370,7 @@ function calculate(task) {
   task = SuperHighCalculationPart(task);
   task = HighCalculationPart(task);
   task = SimpleCalculationPart(task);
-  if (task === NaN) {
+  if (!(parseFloat(task) || task === "0")) {
     throw new Error("Упс, что-то пошло не так :(");
   }
   if (task >= power(2, 53)) {

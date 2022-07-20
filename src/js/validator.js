@@ -80,7 +80,7 @@ class EqualsValidator extends Validator {
     ) {
       this.taskText.length = length - 1;
     }
-    this.buttonValue = calculate(this.taskText);
+    this.buttonValue = calculate(this.taskText.split(" ").join(""));
     this.task.innerHTML = "";
     document.getElementById("history").innerHTML = this.taskText;
     return this.buttonValue;
@@ -138,6 +138,6 @@ class OneSignValidator extends Validator {
     ) {
       throw new Error("Чего-то не хватает");
     }
-    return this.buttonValue;
+    return " " + this.buttonValue;
   }
 }
