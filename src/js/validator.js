@@ -92,8 +92,12 @@ class BracketValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    //проверка на начало выражения
+    if (this.buttonValue === ")" && this.taskText === "") {
+      throw new Error(")))");
+    }
     //проверка цифра(, )(, !(
-    if (
+    else if (
       this.buttonValue === "(" &&
       (this.taskText[this.taskText.length - 1] === "!" ||
         this.taskText[this.taskText.length - 1] === ")" ||
