@@ -6,10 +6,13 @@ import "./sass/main.scss";
 import "./js/clear_buttons.js";
 import "./js/equals.js";
 import { Button } from "./js/buttons.js";
+
 import { NumberValidator } from "./js/validator.js";
 import { EqualsValidator } from "./js/validator.js";
 import { BracketValidator } from "./js/validator.js";
 import { OneSignValidator } from "./js/validator.js";
+import { DotValidator } from "./js/validator.js";
+
 import { showNotification } from "./js/buttons.js";
 import Lottie from "lottie-web";
 
@@ -142,7 +145,7 @@ function createButtons() {
       BracketValidator
     ),
     new Button([3, 6], "calc-number", "0", "zero", "0", NumberValidator),
-    new Button([3, 7], "calc-simple", ".", "dot", ".", NumberValidator),
+    new Button([3, 7], "calc-simple", ".", "dot", ".", DotValidator),
   ];
 }
 

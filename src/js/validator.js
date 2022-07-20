@@ -3,6 +3,7 @@ export { NumberValidator };
 export { EqualsValidator };
 export { BracketValidator };
 export { OneSignValidator };
+export { DotValidator };
 
 import { calculate } from "./calculate_function.js";
 
@@ -143,5 +144,27 @@ class OneSignValidator extends Validator {
       throw new Error("Чего-то не хватает");
     }
     return " " + this.buttonValue;
+  }
+}
+class DotValidator extends Validator {
+  constructor(buttonValue, ButtonCssClass, ButtonId) {
+    super(buttonValue, ButtonCssClass, ButtonId);
+  }
+  validate() {
+    //проверка на начало выражения и не число
+    if (
+      this.taskText === "" ||
+      !Number.isInteger(+this.taskText[this.taskText.length - 1])
+    ) {
+      throw new Error("Так не работает...");
+    }
+    //проверка на две точки в одном числе
+    if (
+      this.taskText.lastIndexOf(".") != -1 &&
+      parseFloat(this.taskText.slice(this.taskText.lastIndexOf(".")))
+    ) {
+      throw new Error("Многовато точек...");
+    }
+    return this.buttonValue;
   }
 }
