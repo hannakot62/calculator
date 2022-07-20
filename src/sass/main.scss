@@ -3,7 +3,7 @@ html {
 }
 body {
   height: 100%;
-
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -396,6 +396,7 @@ html.light .table-btn {
   flex-direction: column;
 }
 .notification span {
+  align-self: start;
   text-align: center;
   padding: 0.5rem 0.8rem;
   background-color: rgba(70, 70, 70, 0.5);
