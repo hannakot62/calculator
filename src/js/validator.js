@@ -59,6 +59,9 @@ class EqualsValidator extends Validator {
   }
   validate() {
     console.log(this.task);
+    if (this.taskText === "") {
+      throw new Error("Пусто :(");
+    }
     //проверка на закрытые скобки работает
     if (countSymbol(this.taskText, "(") != countSymbol(this.taskText, ")")) {
       throw new Error("Закройте все скобки!");
@@ -120,4 +123,21 @@ class BracketValidator extends Validator {
     return this.buttonValue;
   }
 }
-class OneSignValidator extends Validator {}
+class OneSignValidator extends Validator {
+  constructor(buttonValue, ButtonCssClass, ButtonId) {
+    super(buttonValue, ButtonCssClass, ButtonId);
+  }
+  validate() {
+    //проверка на два знака подряд и начало выражения, кроме ), числа и !
+    if (
+      !(
+        this.taskText[this.taskText.length - 1] === ")" ||
+        this.taskText[this.taskText.length - 1] === "!" ||
+        Number.isInteger(+this.taskText[this.taskText.length - 1])
+      )
+    ) {
+      throw new Error("Чего-то не хватает");
+    }
+    return this.buttonValue;
+  }
+}

@@ -41,6 +41,7 @@ class Button {
       this.addToTask();
     } catch (e) {
       console.log(e);
+      showNotification(e);
       //добавить уведомление
     }
   }
@@ -49,4 +50,14 @@ class Button {
     taskResult.innerHTML += this.value;
     this.value = this.originalvalue;
   }
+}
+
+export function showNotification(exceptionText) {
+  let notification = document.createElement("span");
+  notification.innerHTML = exceptionText;
+  let where = document.getElementsByClassName("notification")[0];
+  where.prepend(notification);
+  where.style.visibility = "visible";
+
+  setTimeout(() => notification.remove(), 1200);
 }

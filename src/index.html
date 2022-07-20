@@ -19,7 +19,8 @@
   </head>
 
   <body>
-    <div class="main-container">
+    <div class="notification"></div>
+    <div class="main-container" id="main">
       <div class="text-container">
         <p id="hehe">Need to calculate something?</p>
         <button class="change-theme" id="themeBTN">
@@ -60,8 +61,8 @@
           </svg>
         </button>
       </div>
-      <div class="calculator">
-        <div class="calculator-container">
+      <div class="calculator" id="calculator">
+        <div class="calculator-container" id="where">
           <div class="task-result-container">
             <div class="task-result" id="taskResult"></div>
           </div>
@@ -110,8 +111,9 @@
               <td></td>
             </tr>
           </table>
-          <div class="clear-button-container">
-            <button class="clear" id="clearBtn">Clear</button>
+          <div class="buttons-container">
+            <button class="bottom-btn" id="clearBtn">Clear</button>
+            <button class="bottom-btn" id="calculateBtn">Calculate!</button>
           </div>
         </div>
 
@@ -135,5 +137,6 @@
         </button>
       </div>
     </div>
+    <!-- <div class="animation" id="animation"></div> -->
   </body>
 </html>

@@ -1,11 +1,15 @@
 html {
   height: 100%;
+}
+body {
+  height: 100%;
+
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Montserrat", sans-serif;
+  overflow: hidden;
 }
-
 html.dark {
   background: rgb(4, 25, 59);
   background: linear-gradient(
@@ -85,8 +89,8 @@ button span {
 
 html.dark .clear-a-symbol {
   color: #fff;
-  background-color: #433c4e;
-  border: 0.1rem solid #433c4e;
+  background-color: #17121f;
+  border: 0.1rem solid #ff5d00;
   -webkit-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.73);
   -moz-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.73);
   box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.73);
@@ -100,25 +104,36 @@ html.light .clear-a-symbol {
   box-shadow: 0px 0px 35px 2px rgba(0, 0, 0, 0.73);
 }
 
-.clear-button-container {
-  text-align: right;
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
 }
-.clear {
-  margin-top: 3rem;
+.bottom-btn {
+  margin-top: 2.5rem;
   padding: 0.5rem 1.1rem;
   font-weight: bolder;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.08rem;
 }
-html.dark .clear {
-  background-color: #ff7000;
+html.dark .bottom-btn {
+  background-color: #17121f;
   color: #fff;
-  border: 0.1rem solid #ff7000;
+  border: 0.1rem solid #ff5d00;
   -webkit-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.73);
   -moz-box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.73);
   box-shadow: 0px 0px 35px 5px rgba(0, 0, 0, 0.73);
 }
-html.light .clear {
+html.dark #calculateBtn {
+  background-color: #ff5d00;
+  color: #fff;
+  border: 0.1rem solid #ff5d00;
+}
+html.light #calculateBtn {
+  background-color: #ffae2a;
+  color: #322717;
+  border: 0.1rem solid #322717;
+}
+html.light .bottom-btn {
   background-color: #322717;
   color: #fff;
   border: 0.1rem solid #322717;
@@ -177,13 +192,21 @@ html.dark .clear-a-symbol:hover {
   border: 0.1rem solid #fff;
   cursor: pointer;
 }
-html.dark .clear:hover {
+html.dark .bottom-btn:hover {
   transition: 0.3s ease;
-  background-color: #75421c;
+  background-color: #453c4e;
   border: 0.1rem solid #fff;
   cursor: pointer;
 }
-
+html.dark #calculateBtn:hover {
+  background-color: #943400;
+  border: 0.1rem solid #fff;
+}
+html.light #calculateBtn:hover {
+  background-color: #985e00;
+  border: 0.1rem solid #fff;
+  color: #fff;
+}
 html.light .change-theme:hover {
   text-shadow: 0px 0px 10px #322717;
   transition: 0.3s ease;
@@ -196,7 +219,7 @@ html.light .clear-a-symbol:hover {
   color: #fff;
   cursor: pointer;
 }
-html.light .clear:hover {
+html.light .bottom-btn:hover {
   transition: 0.3s ease;
   background-color: #ebc174;
   border: 0.1rem solid #fff;
@@ -206,8 +229,7 @@ html.light .clear:hover {
 .memory,
 .table-btn,
 .calc-number,
-.calc-simple,
-#equals {
+.calc-simple {
   font-family: "Montserrat", sans-serif;
   border-radius: 50%;
   font-size: larger;
@@ -233,10 +255,6 @@ html.dark .calc-simple {
   border: 0.1rem solid #fff;
   color: #fff;
 }
-html.dark #equals {
-  border: 0.1rem solid #fff;
-  color: #fff;
-}
 
 html.light .memory {
   border: 0.1rem solid #322717;
@@ -254,15 +272,10 @@ html.light .calc-simple {
   border: 0.1rem solid #322717;
   color: #322717;
 }
-html.light #equals {
-  border: 0.1rem solid #322717;
-  color: #322717;
-}
 html.dark .memory:hover,
 .table-btn:hover,
 .calc-number:hover,
-.calc-simple:hover,
-#equals:hover {
+.calc-simple:hover {
   transition: 0.5s ease;
   cursor: pointer;
   font-size: medium;
@@ -277,9 +290,7 @@ html.dark .memory:hover,
 html.dark .calc-number {
   background-color: #a2592a;
 }
-html.dark #equals {
-  background-color: rgb(155 68 0);
-}
+
 html.dark .memory {
   background-color: #20071b;
 }
@@ -293,8 +304,7 @@ html.dark .table-btn {
 html.light .memory:hover,
 .table-btn:hover,
 .calc-number:hover,
-.calc-simple:hover,
-#equals:hover {
+.calc-simple:hover {
   transition: 0.5s ease;
   cursor: pointer;
   font-size: medium;
@@ -308,9 +318,7 @@ html.light .memory:hover,
 html.light .calc-number {
   background-color: #ffeebb;
 }
-html.light #equals {
-  background-color: #ffe616;
-}
+
 html.light .memory {
   background-color: #ffbd52;
 }
@@ -375,4 +383,38 @@ html.light .table-btn {
 .calculator {
   display: flex;
   justify-content: space-between;
+}
+.notification {
+  text-align: center;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease;
+  z-index: 2;
+  visibility: hidden;
+  flex-direction: column;
+}
+.notification span {
+  text-align: center;
+  padding: 0.5rem 0.8rem;
+  background-color: rgba(70, 70, 70, 0.5);
+  color: white;
+  border: 0.1rem solid rgba(70, 70, 70, 0.5);
+  border-radius: 1rem;
+}
+//ааааааааааааааааааааааааааааааааа
+.animation {
+  height: 10rem;
+  width: 10rem;
+  display: flex;
+  justify-content: start;
+  z-index: 2;
+  align-self: flex-end;
+}
+.animation.move {
+  // transform: translate(800%, -500%);
+  justify-content: flex-end;
+  align-self: start;
+  transition: 3s ease;
 }
