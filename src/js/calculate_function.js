@@ -1,5 +1,4 @@
 export { calculate };
-
 function countOperations(action) {
   let count = 0;
   for (let i = 0; i < action.length; i++) {
@@ -111,6 +110,9 @@ function simpleOperation(simple) {
 }
 
 function SuperHighCalculationPart(task) {
+  if (task.includes("Infinity")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
   //проверяем супер важные операции ! ^
   while (task.includes("!") || task.includes("^")) {
     let SuperHighResult;
@@ -193,6 +195,9 @@ function SuperHighCalculationPart(task) {
   return task;
 }
 function HighCalculationPart(task) {
+  if (task.includes("Infinity")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
   //проверяем на просто важные операции
   while (task.includes("/") || task.includes("*") || task.includes("%")) {
     let highIndex = FindFirstHighPriorityIndex(task);
@@ -222,6 +227,9 @@ function HighCalculationPart(task) {
   return task;
 }
 function SimpleCalculationPart(task) {
+  if (task.includes("Infinity")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
   //считаем что-то людское
   //посмотреть количество операций
   //простые операции
@@ -252,6 +260,9 @@ function SimpleCalculationPart(task) {
 }
 
 function BracketCalculationPart(task) {
+  if (task.includes("Infinity")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
   while (task.includes("(")) {
     let RightBracketIndex = task.indexOf(")");
     let LeftBracketIndex = task.lastIndexOf("(", RightBracketIndex);
@@ -276,7 +287,10 @@ function BracketCalculationPart(task) {
       task.splice(LeftBracketIndex, symbolsToDelete, action);
       task = task.join("");
       action = String(action);
-      if (action[0] === "-" && task[LeftBracketIndex - 1] != "(") {
+      if (
+        action[0] === "-" &&
+        !(task[LeftBracketIndex - 1] === "(" || LeftBracketIndex === 0)
+      ) {
         task = task.split("");
         if (
           action[0] === "-" &&
@@ -347,6 +361,9 @@ function calculate(task) {
   if (task.includes("e")) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
   }
+  if (task.includes("Infinity")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
   //сразу проверяем скобки
   task = BracketCalculationPart(task);
   //проверяем на другие приоритетные операции: / * % ! ^
@@ -354,9 +371,6 @@ function calculate(task) {
   task = SuperHighCalculationPart(task);
   task = HighCalculationPart(task);
   task = SimpleCalculationPart(task);
-  if (task === Infinity) {
-    throw new Error("Очень много!!!");
-  }
   if (!(parseFloat(task) || task === "0")) {
     console.log(task);
     throw new Error("Упс, что-то пошло не так :(");
@@ -364,7 +378,7 @@ function calculate(task) {
   if (task >= power(2, 53)) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
   }
-  console.log("task in calculate return: ", task);
+  // console.log("task in calculate return: ", task);
   return task;
 }
 
@@ -386,3 +400,9 @@ console.log(calculate("18-3!!+49/7")); //-695
 console.log(calculate("12-5*((8-3^1.1)+45)-9!")); //-363116.258...
 console.log(calculate("2^((((5))))"));
 console.log(calculate("21211221212121+667565656556"));
+try {
+  console.log(calculate("0.047619047619047616+3*10^(4*10^(3))"));
+} catch (e) {
+  console.log(e);
+}
+console.log(calculate("(-6-3)"));
