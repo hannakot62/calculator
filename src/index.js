@@ -13,6 +13,7 @@ import { BracketValidator } from "./js/validator.js";
 import { OneSignValidator } from "./js/validator.js";
 import { DotValidator } from "./js/validator.js";
 import { ChangeSignValidator } from "./js/validator.js";
+import { ComplexOperatorValidator } from "./js/validator.js";
 
 import { showNotification } from "./js/buttons.js";
 import Lottie from "lottie-web";
@@ -35,7 +36,7 @@ function createButtons() {
       "x<span>2</span>",
       "square",
       "^2",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button(
       [0, 2],
@@ -43,7 +44,7 @@ function createButtons() {
       "√x",
       "radical",
       "^(1/2)",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button([0, 3], "table-btn", "×", "multiply", "*", OneSignValidator),
     new Button([0, 4], "calc-number", "1", "one", "1", NumberValidator),
@@ -58,7 +59,7 @@ function createButtons() {
       "x<span>3</span>",
       "cube",
       "^3",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button(
       [1, 2],
@@ -66,7 +67,7 @@ function createButtons() {
       "<span>3</span>√x",
       "cubeRoot",
       "^(1/3)",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button([1, 3], "table-btn", "/", "divide", "/", OneSignValidator),
     new Button([1, 4], "calc-number", "4", "four", "4", NumberValidator),
@@ -88,7 +89,7 @@ function createButtons() {
       "x<span>y</span>",
       "power",
       "^(",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button(
       [2, 2],
@@ -96,7 +97,7 @@ function createButtons() {
       "<span>y</span>√x",
       "anyRoot",
       "^(1/",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button([2, 3], "table-btn", "%", "procent", "%", OneSignValidator),
     new Button([2, 4], "calc-number", "7", "seven", "7", NumberValidator),
@@ -118,7 +119,7 @@ function createButtons() {
       "10<span>x</span>",
       "tenPower",
       "10^(",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button(
       [3, 2],
@@ -134,7 +135,7 @@ function createButtons() {
       "1/x",
       "selfDivide",
       "1/",
-      NumberValidator
+      ComplexOperatorValidator
     ),
     new Button(
       [3, 4],
@@ -162,7 +163,7 @@ calcBtn.addEventListener("click", () => {
   let validator = new EqualsValidator("", "", "");
   try {
     document.getElementById("taskResult").innerHTML = validator.validate();
-    rocket();
+    //rocket();
   } catch (e) {
     showNotification(e);
   }

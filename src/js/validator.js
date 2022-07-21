@@ -5,6 +5,7 @@ export { BracketValidator };
 export { OneSignValidator };
 export { DotValidator };
 export { ChangeSignValidator };
+export { ComplexOperatorValidator };
 
 import { calculate } from "./calculate_function.js";
 
@@ -82,7 +83,12 @@ class EqualsValidator extends Validator {
     ) {
       this.taskText.length = length - 1;
     }
-    this.buttonValue = calculate(this.taskText.split(" ").join(""));
+    this.taskText = this.taskText.split(" ");
+    this.taskText = this.taskText.join("");
+    console.log("task before calculating: ", this.taskText);
+    this.buttonValue = calculate(this.taskText);
+    console.log("task after calculating: ", this.buttonValue);
+
     this.task.innerHTML = "";
     document.getElementById("history").innerHTML = this.taskText;
     return this.buttonValue;
@@ -221,6 +227,35 @@ class ChangeSignValidator extends Validator {
       }
       this.taskText = this.taskText.join("");
       this.task.innerHTML = this.taskText;
+    }
+    return this.buttonValue;
+  }
+}
+class ComplexOperatorValidator extends Validator {
+  constructor(buttonValue, ButtonCssClass, ButtonId) {
+    super(buttonValue, ButtonCssClass, ButtonId);
+  }
+  validate() {
+    //для любого возведения в степень
+    if (this.buttonValue[0] === "^") {
+      if (
+        !(
+          Number.isInteger(+this.taskText[this.taskText.length - 1]) ||
+          this.taskText[this.taskText.length - 1] === ")"
+        )
+      ) {
+        throw new Error("Отсутствует левый операнд!");
+      }
+    }
+    //для 1/x и 10^x
+    if (this.buttonValue[0] === "1") {
+      if (
+        (this.taskText != "" &&
+          this.taskText[this.taskText.length - 1] === ")") ||
+        Number.isInteger(+this.taskText[this.taskText.length - 1])
+      ) {
+        this.buttonValue = "*" + this.buttonValue;
+      }
     }
     return this.buttonValue;
   }

@@ -344,6 +344,9 @@ function BracketCalculationPart(task) {
 }
 
 function calculate(task) {
+  if (task.includes("e")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
   //сразу проверяем скобки
   task = BracketCalculationPart(task);
   //проверяем на другие приоритетные операции: / * % ! ^
@@ -358,6 +361,7 @@ function calculate(task) {
   if (task >= power(2, 53)) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
   }
+  console.log("task in calculate return: ", task);
   return task;
 }
 
