@@ -4,6 +4,7 @@ export { EqualsValidator };
 export { BracketValidator };
 export { OneSignValidator };
 export { DotValidator };
+export { ChangeSignValidator };
 
 import { calculate } from "./calculate_function.js";
 
@@ -164,6 +165,62 @@ class DotValidator extends Validator {
       parseFloat(this.taskText.slice(this.taskText.lastIndexOf(".")))
     ) {
       throw new Error("Многовато точек...");
+    }
+    return this.buttonValue;
+  }
+}
+
+class ChangeSignValidator extends Validator {
+  constructor(buttonValue, ButtonCssClass, ButtonId) {
+    super(buttonValue, ButtonCssClass, ButtonId);
+  }
+  validate() {
+    //проверка на начaло выражения
+    if (this.taskText === "") {
+      this.buttonValue = "(-";
+    }
+    //проверка знак +/- -> знак(-
+    else if (!Number.isInteger(+this.taskText[this.taskText.length - 1])) {
+      //проверка на точку
+      if (this.taskText[this.taskText[this.taskText.length - 1] === "."]) {
+        throw new Error("Допишите число");
+      }
+      //проверка на ) и !
+      if (
+        this.taskText[this.taskText[this.taskText.length - 1] === "!"] ||
+        this.taskText[this.taskText[this.taskText.length - 1] === ")"]
+      ) {
+        this.buttonValue = "*(-";
+      } else {
+        this.buttonValue = "(-";
+      }
+    }
+    //смена знака у записанного числа
+    else if (Number.isInteger(+this.taskText[this.taskText.length - 1])) {
+      let i = 1;
+      for (
+        ;
+        Number.isInteger(+this.taskText[this.taskText.length - i]) ||
+        this.taskText[this.taskText.length - i] === ".";
+        i++
+      ) {}
+      if (
+        this.taskText[this.taskText.length - i] === "-" &&
+        this.taskText[this.taskText.length - i - 1] === "("
+      ) {
+        //отрицательное
+        this.buttonValue = this.taskText.slice(this.taskText.length - i + 1);
+        this.taskText = this.taskText.split("");
+        this.taskText.splice(this.taskText.length - i - 1);
+      } else {
+        //положительное + 0
+        this.buttonValue =
+          "(-" + this.taskText.slice(this.taskText.length - i + 1);
+        this.taskText = this.taskText.split("");
+        this.taskText.splice(this.taskText.length - i + 1);
+      }
+      this.taskText = this.taskText.join("");
+      this.task.innerHTML = this.taskText;
     }
     return this.buttonValue;
   }

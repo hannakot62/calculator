@@ -62,25 +62,6 @@ function FindFirstSuperHighPriorityIndex(action) {
   return fact < pow ? fact : pow;
 }
 
-// function SuperHighPriorityOperation(action, index) {
-//   // выражения вида 76! 3^(+/-4)
-//   let result;
-//   switch (action[index]) {
-//     case "!": {
-//       let num = Number(action.slice(0, index));
-//       result = factorial(num);
-//     }
-//     case "^": {
-//       let base = action.slice(0, index);
-//       base = Number(base);
-//       let exp = action.slice(index + 2, action.length - 2);
-//       exp = Number(exp);
-//       result = power(base, exp);
-//     }
-//   }
-//   return result;
-// }
-
 function simpleOperation(simple) {
   // + - / * %
   let result;
@@ -371,6 +352,7 @@ function calculate(task) {
   task = HighCalculationPart(task);
   task = SimpleCalculationPart(task);
   if (!(parseFloat(task) || task === "0")) {
+    console.log(task);
     throw new Error("Упс, что-то пошло не так :(");
   }
   if (task >= power(2, 53)) {

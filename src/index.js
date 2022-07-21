@@ -12,6 +12,7 @@ import { EqualsValidator } from "./js/validator.js";
 import { BracketValidator } from "./js/validator.js";
 import { OneSignValidator } from "./js/validator.js";
 import { DotValidator } from "./js/validator.js";
+import { ChangeSignValidator } from "./js/validator.js";
 
 import { showNotification } from "./js/buttons.js";
 import Lottie from "lottie-web";
@@ -101,7 +102,14 @@ function createButtons() {
     new Button([2, 4], "calc-number", "7", "seven", "7", NumberValidator),
     new Button([2, 5], "calc-number", "8", "eight", "8", NumberValidator),
     new Button([2, 6], "calc-number", "9", "nine", "9", NumberValidator),
-    new Button([2, 7], "calc-simple", "+/-", "changeSign", "", NumberValidator), //!как оно работает аааааа
+    new Button(
+      [2, 7],
+      "calc-simple",
+      "+/-",
+      "changeSign",
+      "",
+      ChangeSignValidator
+    ),
 
     new Button([3, 0], "memory", "MR", "memoryRead", "MR", NumberValidator),
     new Button(
