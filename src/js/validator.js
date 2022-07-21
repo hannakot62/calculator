@@ -90,9 +90,7 @@ class EqualsValidator extends Validator {
     }
     this.taskText = this.taskText.split(" ");
     this.taskText = this.taskText.join("");
-    console.log("task before calculating: ", this.taskText);
     this.buttonValue = calculate(this.taskText);
-    console.log("task after calculating: ", this.buttonValue);
 
     this.task.innerHTML = "";
     document.getElementById("history").innerHTML = this.taskText;
