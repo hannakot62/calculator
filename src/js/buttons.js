@@ -206,7 +206,7 @@ calcBtn.addEventListener("click", () => {
   let validator = new EqualsValidator("", "", "");
   try {
     document.getElementById("taskResult").innerHTML = validator.validate();
-    //rocket();
+    rocket();
   } catch (e) {
     showNotification(e);
   }
@@ -217,7 +217,7 @@ function rocket() {
   let animationContainer = document.createElement("div");
   animationContainer.className = "animation";
   animationContainer.id = "animation";
-  // mainContainer.after(animationContainer);
+  //mainContainer.after(animationContainer);
   document.body.append(animationContainer);
   let animation = Lottie.loadAnimation({
     container: animationContainer,

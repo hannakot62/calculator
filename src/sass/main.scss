@@ -406,16 +406,22 @@ html.light .table-btn {
 }
 //ааааааааааааааааааааааааааааааааа
 .animation {
-  height: 10rem;
-  width: 10rem;
-  display: flex;
-  justify-content: start;
+  height: 20rem;
+  width: 20rem;
+  // display: flex;
+  // justify-content: left;
   z-index: 2;
-  align-self: flex-end;
+  // align-self: flex-end;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 .animation.move {
-  // transform: translate(800%, -500%);
-  justify-content: flex-end;
-  align-self: start;
-  transition: 3s ease;
+  transform: translate(300%, -200%);
+  //transform-origin: right top;
+  // justify-content: right;
+  // align-self: start;
+  transition: 4s ease;
+  top: 0;
+  right: 0;
 }
