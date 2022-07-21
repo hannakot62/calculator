@@ -81,7 +81,10 @@ class EqualsValidator extends Validator {
         this.taskText[this.taskText.length - 1] === "!"
       )
     ) {
-      this.taskText.length = length - 1;
+      this.taskText = this.taskText.split("");
+      this.taskText.pop();
+      this.taskText = this.taskText.join("");
+      this.task.innerHTML = this.taskText;
     }
     this.taskText = this.taskText.split(" ");
     this.taskText = this.taskText.join("");
@@ -130,7 +133,10 @@ class BracketValidator extends Validator {
       ) &&
       this.buttonValue === ")"
     ) {
-      this.taskText.length = length - 1;
+      this.taskText = this.taskText.split("");
+      this.taskText.pop();
+      this.taskText = this.taskText.join("");
+      this.task.innerHTML = this.taskText;
     }
     return this.buttonValue;
   }
