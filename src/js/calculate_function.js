@@ -354,6 +354,9 @@ function calculate(task) {
   task = SuperHighCalculationPart(task);
   task = HighCalculationPart(task);
   task = SimpleCalculationPart(task);
+  if (task === Infinity) {
+    throw new Error("Очень много!!!");
+  }
   if (!(parseFloat(task) || task === "0")) {
     console.log(task);
     throw new Error("Упс, что-то пошло не так :(");
