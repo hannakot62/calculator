@@ -6,6 +6,8 @@ export { OneSignValidator };
 export { DotValidator };
 export { ChangeSignValidator };
 export { ComplexOperatorValidator };
+export { MemoryValidator };
+import { memory } from "./buttons.js";
 
 import { calculate } from "./calculate_function.js";
 
@@ -242,6 +244,12 @@ class ComplexOperatorValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    if (
+      this.taskText != "" &&
+      this.taskText[this.taskText.length - 1] === "."
+    ) {
+      throw new Error("Допишите число");
+    }
     //для любого возведения в степень
     if (this.buttonValue[0] === "^") {
       if (
@@ -263,6 +271,63 @@ class ComplexOperatorValidator extends Validator {
         this.buttonValue = "*" + this.buttonValue;
       }
     }
+    return this.buttonValue;
+  }
+}
+class MemoryValidator extends Validator {
+  constructor(buttonValue, ButtonCssClass, ButtonId) {
+    super(buttonValue, ButtonCssClass, ButtonId);
+  }
+  validate() {
+    switch (this.buttonValue[1]) {
+      case "C": {
+        memory = 0;
+        this.buttonValue = "";
+        break;
+      }
+      case "R": {
+        if (
+          this.taskText != "" &&
+          this.taskText[this.taskText.length - 1] === "."
+        ) {
+          throw new Error("Допишите число");
+        }
+        if (
+          this.taskText != "" &&
+          (Number.isInteger(+this.taskText[this.taskText.length - 1]) ||
+            this.taskText[this.taskText.length - 1] === "!" ||
+            this.taskText[this.taskText.length - 1] === ")")
+        ) {
+          this.buttonValue = "*(" + memory + ")";
+        } else {
+          this.buttonValue = "(" + memory + ")";
+        }
+        break;
+      }
+      case "-": {
+        if (this.taskText === "") {
+          throw new Error("Пусто :(");
+        }
+        this.taskText = this.taskText.split(" ");
+        this.taskText = this.taskText.join("");
+        let computed = parseFloat(calculate(this.taskText));
+        memory -= computed;
+        this.buttonValue = "";
+        break;
+      }
+      case "+": {
+        if (this.taskText === "") {
+          throw new Error("Пусто :(");
+        }
+        this.taskText = this.taskText.split(" ");
+        this.taskText = this.taskText.join("");
+        let computed = parseFloat(calculate(this.taskText));
+        memory += computed;
+        this.buttonValue = "";
+        break;
+      }
+    }
+
     return this.buttonValue;
   }
 }

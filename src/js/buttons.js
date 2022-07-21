@@ -5,7 +5,11 @@ import { OneSignValidator } from "./validator.js";
 import { DotValidator } from "./validator.js";
 import { ChangeSignValidator } from "./validator.js";
 import { ComplexOperatorValidator } from "./validator.js";
+import { MemoryValidator } from "./validator.js";
 import Lottie from "lottie-web";
+export { memory };
+
+let memory = 0;
 
 class Button {
   constructor(place, cssClass, innerHTML, id, value, ValidatorClass) {
@@ -68,7 +72,7 @@ export function showNotification(exceptionText) {
 export function createButtons() {
   console.log("где кнопки а");
   let buttons = [
-    new Button([0, 0], "memory", "MC", "memoryClear", "MC", NumberValidator),
+    new Button([0, 0], "memory", "MC", "memoryClear", "MC", MemoryValidator),
     new Button(
       [0, 1],
       "table-btn hard",
@@ -91,7 +95,7 @@ export function createButtons() {
     new Button([0, 6], "calc-number", "3", "three", "3", NumberValidator),
     new Button([0, 7], "calc-simple", "+", "plus", "+", OneSignValidator),
 
-    new Button([1, 0], "memory", "M+", "memoryAdd", "M+", NumberValidator),
+    new Button([1, 0], "memory", "M+", "memoryAdd", "M+", MemoryValidator),
     new Button(
       [1, 1],
       "table-btn hard",
@@ -120,7 +124,7 @@ export function createButtons() {
       "M-",
       "memorySubstract",
       "M-",
-      NumberValidator
+      MemoryValidator
     ),
     new Button(
       [2, 1],
@@ -151,7 +155,7 @@ export function createButtons() {
       ChangeSignValidator
     ),
 
-    new Button([3, 0], "memory", "MR", "memoryRead", "MR", NumberValidator),
+    new Button([3, 0], "memory", "MR", "memoryRead", "MR", MemoryValidator),
     new Button(
       [3, 1],
       "table-btn hard",
