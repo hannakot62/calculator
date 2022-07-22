@@ -113,12 +113,19 @@ function SuperHighCalculationPart(task) {
   if (task.includes("Infinity")) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
   }
+  if (task.includes("e")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
+  if (task.includes("N")) {
+    throw new Error("Упс, что-то пошло не так :(");
+  }
   //проверяем супер важные операции ! ^
   while (task.includes("!") || task.includes("^")) {
     let SuperHighResult;
     let symbolsToDelete = 0;
     let superHighIndex = FindFirstSuperHighPriorityIndex(task);
     let base = "";
+    let baseLength = 0;
     //если основание отрицательное
     if (task[superHighIndex - 1] === ")") {
       let baseLeftBracket = task.lastIndexOf("(", superHighIndex);
@@ -127,7 +134,7 @@ function SuperHighCalculationPart(task) {
       base = task.slice(baseLeftBracket + 1, superHighIndex - 1);
       base = base.join("");
       task = task.join("");
-      symbolsToDelete += 2;
+      baseLength += 2;
     } else {
       let i = superHighIndex - 1;
       for (; Number.isInteger(+task[i]) || task[i] === "."; i--) {
@@ -138,7 +145,7 @@ function SuperHighCalculationPart(task) {
       base = base.join("");
     }
 
-    let baseLength = base.length;
+    baseLength += base.length;
     base = Number(base);
     let ppower = "";
 
@@ -159,6 +166,7 @@ function SuperHighCalculationPart(task) {
         break;
       }
       case "^": {
+        let powerLength = 0;
         if (task[superHighIndex + 1] === "(") {
           //если показатель отрицательный
           let powerRightBracket = task.indexOf(")", superHighIndex);
@@ -167,7 +175,7 @@ function SuperHighCalculationPart(task) {
           ppower = task.slice(superHighIndex + 2, powerRightBracket);
           ppower = ppower.join("");
           task = task.join("");
-          symbolsToDelete += 2;
+          powerLength += 2;
         } else {
           let i = superHighIndex + 1;
           ppower = ppower.split("");
@@ -176,12 +184,42 @@ function SuperHighCalculationPart(task) {
           }
           ppower = ppower.join("");
         }
-        let powerLength = ppower.length;
+        powerLength += ppower.length;
         ppower = Number(ppower);
 
         SuperHighResult = power(base, ppower);
         symbolsToDelete += baseLength + powerLength + 1;
         task = task.split("");
+        //нужна проверка на прісоедіненіе результата
+        if (SuperHighResult < 0) {
+          SuperHighResult = String(SuperHighResult);
+          //если перед результатом другая операция, кроме + -
+          //добавляем скобки, если !, добавляем еще умножение
+          if (
+            task[superHighIndex - baseLength - 1] === "^" ||
+            task[superHighIndex - baseLength - 1] === "/" ||
+            task[superHighIndex - baseLength - 1] === "*" ||
+            task[superHighIndex - baseLength - 1] === "%"
+          ) {
+            SuperHighResult = "(" + SuperHighResult + ")";
+          }
+          if (task[superHighIndex - baseLength - 1] === "!") {
+            SuperHighResult = "*(" + SuperHighResult + ")";
+          }
+          //+ -
+          if (task[superHighIndex - baseLength - 1] === "+") {
+            baseLength++;
+            symbolsToDelete++;
+          }
+          if (task[superHighIndex - baseLength - 1] === "-") {
+            baseLength++;
+            symbolsToDelete++;
+            SuperHighResult = SuperHighResult.split("");
+            SuperHighResult.shift();
+            SuperHighResult.unshift("+");
+            SuperHighResult = SuperHighResult.join("");
+          }
+        }
         task.splice(
           superHighIndex - baseLength,
           symbolsToDelete,
@@ -197,6 +235,12 @@ function SuperHighCalculationPart(task) {
 function HighCalculationPart(task) {
   if (task.includes("Infinity")) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
+  if (task.includes("e")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
+  if (task.includes("N")) {
+    throw new Error("Упс, что-то пошло не так :(");
   }
   //проверяем на просто важные операции
   while (task.includes("/") || task.includes("*") || task.includes("%")) {
@@ -230,12 +274,23 @@ function SimpleCalculationPart(task) {
   if (task.includes("Infinity")) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
   }
+  if (task.includes("e")) {
+    throw new Error("Мне тяжело работать с такими большими числами :(");
+  }
+  if (task.includes("N")) {
+    throw new Error("Упс, что-то пошло не так :(");
+  }
   //считаем что-то людское
   //посмотреть количество операций
   //простые операции
   let operationsLeft = countOperations(task);
-  if (task[0] === "-") {
+  if (task[0] === "-" || task[0] === "+") {
     operationsLeft--;
+    if (task[0] === "+") {
+      task = task.split("");
+      task.shift();
+      task = task.join("");
+    }
   }
   while (operationsLeft) {
     let simpleTask = task[0];
@@ -276,7 +331,7 @@ function BracketCalculationPart(task) {
           task[LeftBracketIndex - 1] === "%" ||
           task[LeftBracketIndex - 1] === "!" ||
           task[LeftBracketIndex - 1] === "^" ||
-          task[RightBracketIndex - 1] === "^")
+          task[RightBracketIndex + 1] === "^")
       )
     ) {
       let symbolsToDelete = action.length + 2;
@@ -382,27 +437,26 @@ function calculate(task) {
   return task;
 }
 
-let task = "10+(3+2+(-3!-4.5)+15-5-(9+(2+1+1)+1))"; // 0.5  //20 не цифр и, //37 символов
-let a = calculate(task); //працуе 0.5
-console.log(a);
-console.log(calculate("21*7*(3-2!)-((2%10-5)/2)+13")); //162,4
-console.log(simpleOperation("12*-4")); //ok
-console.log(calculate("120/(-6)-12+(8+9)")); // ok -15
-
-console.log(calculate("5^(-3)")); //ok 0.008
-console.log(calculate("12-2!+((2^(-5)+2)-1)+13")); //працуе 24.03125
-
-console.log(calculate("123-34.5*76-5!*(2^8.8)")); // -55985.62....
-console.log(calculate("9-(-2)^5+32%6")); //42,92
-
-console.log(calculate("66-9^(18/(-9))")); //65,9876.....
-console.log(calculate("18-3!!+49/7")); //-695
-console.log(calculate("12-5*((8-3^1.1)+45)-9!")); //-363116.258...
-console.log(calculate("2^((((5))))"));
-console.log(calculate("21211221212121+667565656556"));
-try {
-  console.log(calculate("0.047619047619047616+3*10^(4*10^(3))"));
-} catch (e) {
-  console.log(e);
-}
-console.log(calculate("(-6-3)"));
+// let task = "10+(3+2+(-3!-4.5)+15-5-(9+(2+1+1)+1))"; // 0.5  //20 не цифр и, //37 символов
+// let a = calculate(task); //працуе 0.5
+// console.log(a);
+// console.log(calculate("21*7*(3-2!)-((2%10-5)/2)+13")); //162,4
+// console.log(simpleOperation("12*-4")); //ok
+// console.log(calculate("120/(-6)-12+(8+9)")); // ok -15
+// console.log(calculate("5^(-3)")); //ok 0.008
+// console.log(calculate("12-2!+((2^(-5)+2)-1)+13")); //працуе 24.03125
+// console.log(calculate("123-34.5*76-5!*(2^8.8)")); // -55985.62....
+// console.log(calculate("9-(-2)^5+32%6")); //42,92
+// console.log(calculate("66-9^(18/(-9))")); //65,9876.....
+// console.log(calculate("18-3!!+49/7")); //-695
+// console.log(calculate("12-5*((8-3^1.1)+45)-9!")); //-363116.258...
+// console.log(calculate("2^((((5))))"));
+// console.log(calculate("21211221212121+667565656556"));
+// try {
+//   console.log(calculate("0.047619047619047616+3*10^(4*10^(3))"));
+// } catch (e) {
+//   console.log(e);
+// }
+// console.log(calculate("(-6-3)"));
+// console.log(calculate("-(-4.143559041588484)^2"));
+// console.log(calculate("-(-11)"));
