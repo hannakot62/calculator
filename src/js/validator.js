@@ -9,7 +9,7 @@ export { ComplexOperatorValidator };
 export { MemoryValidator };
 import { memory } from "./buttons.js";
 
-import { calculate } from "./calculate_function.js";
+import calculate from "./calculate_function.js";
 
 function countSymbol(str, smbl) {
   let counter = 0;

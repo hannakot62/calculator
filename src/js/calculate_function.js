@@ -1,4 +1,4 @@
-export { calculate };
+// export { calculate };
 function countOperations(action) {
   let count = 0;
   for (let i = 0; i < action.length; i++) {
@@ -436,6 +436,7 @@ function calculate(task) {
   // console.log("task in calculate return: ", task);
   return task;
 }
+module.exports = calculate;
 
 // let task = "10+(3+2+(-3!-4.5)+15-5-(9+(2+1+1)+1))"; // 0.5  //20 не цифр и, //37 символов
 // let a = calculate(task); //працуе 0.5
