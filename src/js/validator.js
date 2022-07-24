@@ -1,14 +1,16 @@
-export { Validator };
-export { NumberValidator };
-export { EqualsValidator };
-export { BracketValidator };
-export { OneSignValidator };
-export { DotValidator };
-export { ChangeSignValidator };
-export { ComplexOperatorValidator };
-export { MemoryValidator };
-import { memory } from "./buttons.js";
+export {
+  Validator,
+  NumberValidator,
+  EqualsValidator,
+  BracketValidator,
+  OneSignValidator,
+  DotValidator,
+  ChangeSignValidator,
+  ComplexOperatorValidator,
+  MemoryValidator,
+};
 
+import { memory } from "./buttons.js";
 import calculate from "./calculate_function.js";
 
 function countSymbol(str, smbl) {

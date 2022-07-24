@@ -1,4 +1,3 @@
-// export { calculate };
 function countOperations(action) {
   let count = 0;
   for (let i = 0; i < action.length; i++) {
@@ -190,7 +189,7 @@ function SuperHighCalculationPart(task) {
         SuperHighResult = power(base, ppower);
         symbolsToDelete += baseLength + powerLength + 1;
         task = task.split("");
-        //нужна проверка на прісоедіненіе результата
+        //проверка на присоединение результата
         if (SuperHighResult < 0) {
           SuperHighResult = String(SuperHighResult);
           //если перед результатом другая операция, кроме + -
@@ -326,6 +325,7 @@ function BracketCalculationPart(task) {
     if (
       !(
         Number(action) < 0 && //если в скобках НЕ отрицательный правый операнд приоритетной операции
+        //и не отрицательный показатель степени
         (task[LeftBracketIndex - 1] === "*" ||
           task[LeftBracketIndex - 1] === "/" ||
           task[LeftBracketIndex - 1] === "%" ||
@@ -338,7 +338,7 @@ function BracketCalculationPart(task) {
       action = calculate(action);
 
       task = task.split("");
-      //проверка на + - прі прісоедіненіі
+      //проверка на + - при присоединении
       task.splice(LeftBracketIndex, symbolsToDelete, action);
       task = task.join("");
       action = String(action);
@@ -377,7 +377,7 @@ function BracketCalculationPart(task) {
         outerAction = calculate(outerAction);
 
         task = task.split("");
-        //проверка на + - прі прісоедіненіі
+        //проверка на + - при присоединении
         task.splice(outerLeftBracketIndex, outerSymbolsToDelete, outerAction);
         task = task.join("");
         outerAction = String(outerAction);
@@ -427,37 +427,11 @@ function calculate(task) {
   task = HighCalculationPart(task);
   task = SimpleCalculationPart(task);
   if (!(parseFloat(task) || task === "0")) {
-    console.log(task);
     throw new Error("Упс, что-то пошло не так :(");
   }
   if (task >= power(2, 53)) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
   }
-  // console.log("task in calculate return: ", task);
   return task;
 }
 module.exports = calculate;
-
-// let task = "10+(3+2+(-3!-4.5)+15-5-(9+(2+1+1)+1))"; // 0.5  //20 не цифр и, //37 символов
-// let a = calculate(task); //працуе 0.5
-// console.log(a);
-// console.log(calculate("21*7*(3-2!)-((2%10-5)/2)+13")); //162,4
-// console.log(simpleOperation("12*-4")); //ok
-// console.log(calculate("120/(-6)-12+(8+9)")); // ok -15
-// console.log(calculate("5^(-3)")); //ok 0.008
-// console.log(calculate("12-2!+((2^(-5)+2)-1)+13")); //працуе 24.03125
-// console.log(calculate("123-34.5*76-5!*(2^8.8)")); // -55985.62....
-// console.log(calculate("9-(-2)^5+32%6")); //42,92
-// console.log(calculate("66-9^(18/(-9))")); //65,9876.....
-// console.log(calculate("18-3!!+49/7")); //-695
-// console.log(calculate("12-5*((8-3^1.1)+45)-9!")); //-363116.258...
-// console.log(calculate("2^((((5))))"));
-// console.log(calculate("21211221212121+667565656556"));
-// try {
-//   console.log(calculate("0.047619047619047616+3*10^(4*10^(3))"));
-// } catch (e) {
-//   console.log(e);
-// }
-// console.log(calculate("(-6-3)"));
-// console.log(calculate("-(-4.143559041588484)^2"));
-// console.log(calculate("-(-11)"));

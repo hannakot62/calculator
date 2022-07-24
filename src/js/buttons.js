@@ -1,11 +1,14 @@
-import { NumberValidator } from "./validator.js";
-import { EqualsValidator } from "./validator.js";
-import { BracketValidator } from "./validator.js";
-import { OneSignValidator } from "./validator.js";
-import { DotValidator } from "./validator.js";
-import { ChangeSignValidator } from "./validator.js";
-import { ComplexOperatorValidator } from "./validator.js";
-import { MemoryValidator } from "./validator.js";
+import {
+  NumberValidator,
+  EqualsValidator,
+  BracketValidator,
+  OneSignValidator,
+  DotValidator,
+  ChangeSignValidator,
+  ComplexOperatorValidator,
+  MemoryValidator,
+} from "./validator.js";
+
 import Lottie from "lottie-web";
 export { memory };
 
@@ -44,16 +47,12 @@ class Button {
   listenerFunction() {
     try {
       this.validator();
-      console.log("hello from listener function");
       this.addToTask();
     } catch (e) {
-      console.log(e);
       showNotification(e);
-      //добавить уведомление
     }
   }
   addToTask() {
-    console.log("hello from add to task function");
     taskResult.innerHTML += this.value;
     this.value = this.originalvalue;
   }
@@ -70,7 +69,6 @@ export function showNotification(exceptionText) {
 }
 
 export function createButtons() {
-  console.log("где кнопки а");
   let buttons = [
     new Button([0, 0], "memory", "MC", "memoryClear", "MC", MemoryValidator),
     new Button(
@@ -211,13 +209,11 @@ calcBtn.addEventListener("click", () => {
     showNotification(e);
   }
 });
-//хер поймі что я не могу уже ёпрст
+
 function rocket() {
-  let mainContainer = document.getElementById("main");
   let animationContainer = document.createElement("div");
   animationContainer.className = "animation";
   animationContainer.id = "animation";
-  //mainContainer.after(animationContainer);
   document.body.append(animationContainer);
   let animation = Lottie.loadAnimation({
     container: animationContainer,
