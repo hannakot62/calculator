@@ -2,7 +2,7 @@
 
 The project is made as an internship task with the following requirements:
 
-[technical_task] (https://github.com/hannakot62/calculator/blob/main/for_readme/task.pdf)
+[technical_task](https://github.com/hannakot62/calculator/blob/main/for_readme/task.pdf)
 
 # Description
 
