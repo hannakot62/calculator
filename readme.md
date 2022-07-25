@@ -26,8 +26,8 @@ The calculator also manages memory function, which is available for:
 
 There are two available themes: light and dark
 
-<!-- ![light-theme](ssssss "light-theme")
-![dark-theme](ssssss "dark-theme") -->
+![light-theme](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/light.jpg"light-theme")
+![dark-theme](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/dark.jpg "dark-theme")
 
 # How to run the app
 
