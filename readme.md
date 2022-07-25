@@ -24,10 +24,16 @@ The calculator also manages memory function, which is available for:
 - addition
 - substraction
 
+The calculator is capable of working with brackets, which allows any user not to care about the operation priority.
+
 There are two available themes: light and dark
 
 ![light-theme](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/light.jpg "light-theme")
 ![dark-theme](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/dark.jpg "dark-theme")
+
+The calculator is supported by the rocket animation. When it comes to a successfull calculation the rocket is flying.
+
+![rocket](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/light.jpg "rocket")
 
 # How to run the app
 
