@@ -25,8 +25,9 @@ The calculator also manages memory function, which is available for:
 - substraction
 
 There are two available themes: light and dark
-![light-theme](ssssss "light-theme")
-![dark-theme](ssssss "dark-theme")
+
+<!-- ![light-theme](ssssss "light-theme")
+![dark-theme](ssssss "dark-theme") -->
 
 # How to run the app
 
