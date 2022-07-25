@@ -6,10 +6,16 @@ The project is made as an internship task with the following requirements:
 
 # Description
 
-The main part of the calculator is made via JavaScript. The project allows to handle with different Math operations (such as ..список)
+The main part of the calculator is made via JavaScript. The project allows to handle with different Math operation. Such as:
 
--
--
+- addition
+- substraction
+- multiplication
+- division
+- finding a percentage
+- finding the root
+- factorial
+- exponentiation
 
 The calculator also manages memory function, which is available for:
 
@@ -17,6 +23,10 @@ The calculator also manages memory function, which is available for:
 - clearing
 - addition
 - substraction
+
+There are two available themes: light and dark
+![light-theme](ssssss "light-theme")
+![dark-theme](ssssss "dark-theme")
 
 # How to run the app
 
@@ -45,7 +55,6 @@ The files used are grouped the next way:
 
   - **index.html** file is responsible for the main page layout
   - **index.js** file is used for connectiong all the code dependecies in the project???
-  - **rocket.json** я честно и не использовала
-
   - **assets** folder contains the calculator's favicon
   - **sass** folder is used for keeping style file named **main.scss**
+  - **js** folder
