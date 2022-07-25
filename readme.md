@@ -5,7 +5,7 @@ The project is made as an internship task with the following requirements:
 
 # Description
 
-The main part of the calculator is made via JavaScript. The project allows to handle with different Math operation. Such as:
+The main part of the calculator is made via JavaScript. The project allows to handle with different Math operations. Such as:
 
 - addition
 - substraction
