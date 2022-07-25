@@ -26,7 +26,7 @@ The calculator also manages memory function, which is available for:
 
 There are two available themes: light and dark
 
-![light-theme](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/light.jpg"light-theme")
+![light-theme](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/light.jpg "light-theme")
 ![dark-theme](https://raw.githubusercontent.com/hannakot62/calculator/main/for_readme/dark.jpg "dark-theme")
 
 # How to run the app
@@ -58,4 +58,4 @@ The files used are grouped the next way:
   - **index.js** file is used for connectiong all the code dependecies in the project???
   - **assets** folder contains the calculator's favicon
   - **sass** folder is used for keeping style file named **main.scss**
-  - **js** folder
+  - **js** folder is used as source code storage
