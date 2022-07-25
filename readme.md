@@ -37,7 +37,7 @@ The calculator is supported by the rocket animation. When it comes to a successf
 
 To run the app you should prepare an IDE and write in the terminal **_npm run build_** или как или что ааааа
 
-# Files & folders desription
+# Files & folders description
 
 The files used are grouped the next way:
 но это конечно не точно
