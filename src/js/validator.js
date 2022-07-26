@@ -65,7 +65,6 @@ class EqualsValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
-    console.log(this.task);
     if (this.taskText === "") {
       throw new Error("Пусто :(");
     }
@@ -109,6 +108,13 @@ class BracketValidator extends Validator {
     if (this.buttonValue === ")" && this.taskText === "") {
       throw new Error(")))");
     }
+    //проверка на лишние скобки
+    if (
+      this.buttonValue === ")" &&
+      countSymbol(this.taskText, "(") <= countSymbol(this.taskText, ")")
+    ) {
+      throw new Error("Вы не открыли столько скобок!");
+    }
     //проверка цифра(, )(, !(
     else if (
       this.buttonValue === "(" &&
@@ -124,6 +130,10 @@ class BracketValidator extends Validator {
       this.taskText[this.taskText.length - 1] === "("
     ) {
       throw new Error("Не оставляйте пустые скобки!");
+    }
+    //проверка на не открытые скобки
+    else if (this.buttonValue === ")" && !this.taskText.includes("(")) {
+      throw new Error("Сначала скобки надо открыть, Артём!");
     }
     //проверка знак) кроме ! и )
     //просто не берем этот знак
@@ -174,11 +184,19 @@ class DotValidator extends Validator {
       throw new Error("Так не работает...");
     }
     //проверка на две точки в одном числе
-    if (
-      this.taskText.lastIndexOf(".") != -1 &&
-      parseFloat(this.taskText.slice(this.taskText.lastIndexOf(".")))
-    ) {
-      throw new Error("Многовато точек...");
+    if (this.taskText.lastIndexOf(".") != -1) {
+      let needsToBeChecked = this.taskText.slice(
+        this.taskText.lastIndexOf(".") + 1
+      );
+      let counter = 0;
+      for (let i = 0; i < needsToBeChecked.length; i++) {
+        if (Number.isInteger(+needsToBeChecked[i])) {
+          counter++;
+        }
+      }
+      if (counter === needsToBeChecked.length) {
+        throw new Error("Многовато точек...");
+      }
     }
     return this.buttonValue;
   }
@@ -193,16 +211,17 @@ class ChangeSignValidator extends Validator {
     if (this.taskText === "") {
       this.buttonValue = "(-";
     }
+
     //проверка знак +/- -> знак(-
     else if (!Number.isInteger(+this.taskText[this.taskText.length - 1])) {
       //проверка на точку
-      if (this.taskText[this.taskText[this.taskText.length - 1] === "."]) {
+      if (this.taskText[this.taskText.length - 1] === ".") {
         throw new Error("Допишите число");
       }
       //проверка на ) и !
       if (
-        this.taskText[this.taskText[this.taskText.length - 1] === "!"] ||
-        this.taskText[this.taskText[this.taskText.length - 1] === ")"]
+        this.taskText[this.taskText.length - 1] === "!" ||
+        this.taskText[this.taskText.length - 1] === ")"
       ) {
         this.buttonValue = "*(-";
       } else {
@@ -210,7 +229,10 @@ class ChangeSignValidator extends Validator {
       }
     }
     //смена знака у записанного числа
-    else if (Number.isInteger(+this.taskText[this.taskText.length - 1])) {
+    else if (
+      Number.isInteger(+this.taskText[this.taskText.length - 1]) ||
+      this.taskText[this.taskText.length - 1] === "."
+    ) {
       let i = 1;
       for (
         ;
