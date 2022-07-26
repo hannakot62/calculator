@@ -12,6 +12,7 @@ export {
 
 import { memory } from "./buttons.js";
 import calculate from "./calculate_function.js";
+import { showNotification } from "./buttons.js";
 
 function countSymbol(str, smbl) {
   let counter = 0;
@@ -304,6 +305,7 @@ class MemoryValidator extends Validator {
     switch (this.buttonValue[1]) {
       case "C": {
         memory = 0;
+        showNotification("Память очищена!");
         this.buttonValue = "";
         break;
       }

@@ -7,7 +7,15 @@ function countOperations(action) {
   }
   return count;
 }
-
+function countSymbol(str, smbl) {
+  let counter = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === smbl) {
+      counter++;
+    }
+  }
+  return counter;
+}
 function FindFirstHighPriorityIndex(action) {
   let procent = action.indexOf("%");
   let devide = action.indexOf("/");
@@ -42,7 +50,7 @@ function factorial(num) {
 }
 function power(base, exponent) {
   let result = base ** exponent;
-  if (!Number.isNaN(result)) {
+  if (result != NaN) {
     return result;
   } else {
     throw new Error("Некорректное возведение в степень");
@@ -189,7 +197,7 @@ function SuperHighCalculationPart(task) {
         SuperHighResult = power(base, ppower);
         symbolsToDelete += baseLength + powerLength + 1;
         task = task.split("");
-        //проверка на присоединение результата
+        //нужна проверка на прісоедіненіе результата
         if (SuperHighResult < 0) {
           SuperHighResult = String(SuperHighResult);
           //если перед результатом другая операция, кроме + -
@@ -263,8 +271,44 @@ function HighCalculationPart(task) {
     let rightIndex = i - 1;
     let simpleHighTask = task.slice(leftIndex, rightIndex + 1);
     let simpleHighResult = simpleOperation(simpleHighTask);
+
+    // task = task.split("");
+    // task.splice(leftIndex, simpleHighTask.length, simpleHighResult);
+    // task = task.join("");
+    //[picjhfahfkhggdgfjksdgfjhsgjkhgjhfdgjhfjgfjgjhdfgjhfdgjhfgjhgfhgsdfhdghfgfdhfgdhgfdhfgdhgf]
     task = task.split("");
-    task.splice(leftIndex, simpleHighTask.length, simpleHighResult);
+    let symbolsToDelete = simpleHighTask.length;
+    //нужна проверка на прісоедіненіе результата
+    if (simpleHighResult < 0) {
+      simpleHighResult = String(simpleHighResult);
+      //если перед результатом другая операция, кроме + -
+      //добавляем скобки, если !, добавляем еще умножение
+      if (
+        task[leftIndex - 1] === "^" ||
+        task[leftIndex - 1] === "/" ||
+        task[leftIndex - 1] === "*" ||
+        task[leftIndex - 1] === "%"
+      ) {
+        simpleHighResult = "(" + simpleHighResult + ")";
+      }
+      if (task[leftIndex - 1] === "!") {
+        simpleHighResult = "*(" + simpleHighResult + ")";
+      }
+      //+ -
+      if (task[leftIndex - 1] === "+") {
+        leftIndex--;
+        symbolsToDelete++;
+      }
+      if (task[leftIndex - 1] === "-") {
+        leftIndex--;
+        symbolsToDelete++;
+        simpleHighResult = simpleHighResult.split("");
+        simpleHighResult.shift();
+        simpleHighResult.unshift("+");
+        simpleHighResult = simpleHighResult.join("");
+      }
+    }
+    task.splice(leftIndex, symbolsToDelete, simpleHighResult);
     task = task.join("");
   }
   return task;
@@ -324,8 +368,7 @@ function BracketCalculationPart(task) {
 
     if (
       !(
-        Number(action) < 0 && //если в скобках НЕ отрицательный правый операнд приоритетной операции
-        //и не отрицательный показатель степени
+        Number(action) < 0 && //если в скобках НЕ отрицательный правый операнд приоритетной операции и нее основание степени
         (task[LeftBracketIndex - 1] === "*" ||
           task[LeftBracketIndex - 1] === "/" ||
           task[LeftBracketIndex - 1] === "%" ||
@@ -338,7 +381,7 @@ function BracketCalculationPart(task) {
       action = calculate(action);
 
       task = task.split("");
-      //проверка на + - при присоединении
+      //проверка на + - прі прісоедіненіі
       task.splice(LeftBracketIndex, symbolsToDelete, action);
       task = task.join("");
       action = String(action);
@@ -364,6 +407,7 @@ function BracketCalculationPart(task) {
         task = task.join("");
       }
     } else {
+      //сюда ідём???
       //найти внешние для этого выражения скобки и передать их в calculete, если они есть, если нет -> if'ы
       if (task.slice(0, LeftBracketIndex).includes("(")) {
         let outerRightBracketIndex = task.indexOf(")", RightBracketIndex + 1);
@@ -377,7 +421,7 @@ function BracketCalculationPart(task) {
         outerAction = calculate(outerAction);
 
         task = task.split("");
-        //проверка на + - при присоединении
+        //проверка на + - прі прісоедіненіі
         task.splice(outerLeftBracketIndex, outerSymbolsToDelete, outerAction);
         task = task.join("");
         outerAction = String(outerAction);
@@ -398,6 +442,74 @@ function BracketCalculationPart(task) {
             task.splice(outerLeftBracketIndex - 1, 1); //проверка на +-
           }
           task = task.join("");
+        }
+      } //начало лютых приколов
+      else if (task.slice(RightBracketIndex).includes("(")) {
+        let anotherOuterLeftBracketIndex = task.indexOf("(", RightBracketIndex);
+        let anotherInnerRightBracketIndex = task.lastIndexOf(")");
+        let BracketPairQuantity = countSymbol(
+          task.slice(RightBracketIndex, anotherInnerRightBracketIndex),
+          "("
+        );
+        let anotherOuterRightBracketIndex = -1;
+        for (let i = 0; i < BracketPairQuantity; i++) {
+          if (task[RightBracketIndex + 1 + i] === ")") {
+            anotherOuterRightBracketIndex = RightBracketIndex + 1 + i;
+          }
+        }
+        let action = task.slice(
+          anotherOuterLeftBracketIndex + 1,
+          anotherOuterRightBracketIndex
+        ); // действие без скобок
+
+        if (
+          !(
+            Number(action) < 0 && //если в скобках НЕ отрицательный правый операнд приоритетной операции и нее основание степени
+            (task[anotherOuterLeftBracketIndex - 1] === "*" ||
+              task[anotherOuterLeftBracketIndex - 1] === "/" ||
+              task[anotherOuterLeftBracketIndex - 1] === "%" ||
+              task[anotherOuterLeftBracketIndex - 1] === "!" ||
+              task[anotherOuterLeftBracketIndex - 1] === "^" ||
+              task[anotherOuterRightBracketIndex + 1] === "^")
+          )
+        ) {
+          let symbolsToDelete = action.length + 2;
+          action = calculate(action);
+
+          task = task.split("");
+          //проверка на + - прі прісоедіненіі
+          task.splice(anotherOuterLeftBracketIndex, symbolsToDelete, action);
+          task = task.join("");
+          action = String(action);
+          if (
+            action[0] === "-" &&
+            !(
+              task[anotherOuterLeftBracketIndex - 1] === "(" ||
+              anotherOuterLeftBracketIndex === 0
+            )
+          ) {
+            task = task.split("");
+            if (
+              action[0] === "-" &&
+              (task[anotherOuterLeftBracketIndex - 1] === "^" || //проверка на отрицательный второй операнд для */^%
+                task[anotherOuterLeftBracketIndex - 1] === "/" ||
+                task[anotherOuterLeftBracketIndex - 1] === "*" ||
+                task[anotherOuterLeftBracketIndex - 1] === "%")
+            ) {
+              task.splice(anotherOuterLeftBracketIndex, 0, "(");
+              task.splice(
+                anotherOuterLeftBracketIndex + action.length + 1,
+                0,
+                ")"
+              );
+            } else if (task[anotherOuterLeftBracketIndex - 1] === "-") {
+              task.splice(anotherOuterLeftBracketIndex - 1, 2, "+"); // проверка на два минуса
+            } else {
+              task.splice(anotherOuterLeftBracketIndex - 1, 1); //проверка на +-
+            }
+            task = task.join("");
+          }
+          //tytttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
         }
       }
       //---------------------------------------------------------------------------
@@ -434,4 +546,31 @@ function calculate(task) {
   }
   return task;
 }
+
+console.log("pizda");
+let task = "10+(3+2+(-3!-4.5)+15-5-(9+(2+1+1)+1))"; // 0.5  //20 не цифр и, //37 символов
+let a = calculate(task); //працуе 0.5
+console.log(a);
+console.log(calculate("21*7*(3-2!)-((2%10-5)/2)+13")); //162,4
+console.log(simpleOperation("12*-4")); //ok
+console.log(calculate("120/(-6)-12+(8+9)")); // ok -15
+console.log(calculate("5^(-3)")); //ok 0.008
+console.log(calculate("12-2!+((2^(-5)+2)-1)+13")); //працуе 24.03125
+console.log(calculate("123-34.5*76-5!*(2^8.8)")); // -55985.62....
+console.log(calculate("9-(-2)^5+32%6")); //42,92
+console.log(calculate("66-9^(18/(-9))")); //65,9876.....
+console.log(calculate("18-3!!+49/7")); //-695
+console.log(calculate("12-5*((8-3^1.1)+45)-9!")); //-363116.258...
+console.log(calculate("2^((((5))))"));
+console.log(calculate("21211221212121+667565656556"));
+try {
+  console.log(calculate("0.047619047619047616+3*10^(4*10^(3))"));
+} catch (e) {
+  console.log(e);
+}
+console.log(calculate("(-6-3)"));
+console.log(calculate("-(-4.143559041588484)^2"));
+console.log(calculate("-(-11)"));
+console.log(calculate("55-333.63+8^3*((-46))*(-8-(-3))"));
+
 module.exports = calculate;
