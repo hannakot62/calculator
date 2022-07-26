@@ -197,7 +197,7 @@ function SuperHighCalculationPart(task) {
         SuperHighResult = power(base, ppower);
         symbolsToDelete += baseLength + powerLength + 1;
         task = task.split("");
-        //нужна проверка на прісоедіненіе результата
+        //проверка на присоединение результата
         if (SuperHighResult < 0) {
           SuperHighResult = String(SuperHighResult);
           //если перед результатом другая операция, кроме + -
@@ -272,13 +272,9 @@ function HighCalculationPart(task) {
     let simpleHighTask = task.slice(leftIndex, rightIndex + 1);
     let simpleHighResult = simpleOperation(simpleHighTask);
 
-    // task = task.split("");
-    // task.splice(leftIndex, simpleHighTask.length, simpleHighResult);
-    // task = task.join("");
-    //[picjhfahfkhggdgfjksdgfjhsgjkhgjhfdgjhfjgfjgjhdfgjhfdgjhfgjhgfhgsdfhdghfgfdhfgdhgfdhfgdhgf]
     task = task.split("");
     let symbolsToDelete = simpleHighTask.length;
-    //нужна проверка на прісоедіненіе результата
+    // проверка на присоединение результата
     if (simpleHighResult < 0) {
       simpleHighResult = String(simpleHighResult);
       //если перед результатом другая операция, кроме + -
@@ -356,7 +352,8 @@ function SimpleCalculationPart(task) {
   }
   return task;
 }
-
+//тут жесть
+//18+
 function BracketCalculationPart(task) {
   if (task.includes("Infinity")) {
     throw new Error("Мне тяжело работать с такими большими числами :(");
@@ -368,7 +365,7 @@ function BracketCalculationPart(task) {
 
     if (
       !(
-        Number(action) < 0 && //если в скобках НЕ отрицательный правый операнд приоритетной операции и нее основание степени
+        Number(action) < 0 && //если в скобках НЕ отрицательный правый операнд приоритетной операции и не основание степени
         (task[LeftBracketIndex - 1] === "*" ||
           task[LeftBracketIndex - 1] === "/" ||
           task[LeftBracketIndex - 1] === "%" ||
@@ -381,7 +378,7 @@ function BracketCalculationPart(task) {
       action = calculate(action);
 
       task = task.split("");
-      //проверка на + - прі прісоедіненіі
+      //проверка на + - при присоединении
       task.splice(LeftBracketIndex, symbolsToDelete, action);
       task = task.join("");
       action = String(action);
@@ -407,7 +404,6 @@ function BracketCalculationPart(task) {
         task = task.join("");
       }
     } else {
-      //сюда ідём???
       //найти внешние для этого выражения скобки и передать их в calculete, если они есть, если нет -> if'ы
       if (task.slice(0, LeftBracketIndex).includes("(")) {
         let outerRightBracketIndex = task.indexOf(")", RightBracketIndex + 1);
@@ -509,7 +505,6 @@ function BracketCalculationPart(task) {
             }
             task = task.join("");
           }
-          //tytttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
         }
       }
       //---------------------------------------------------------------------------
