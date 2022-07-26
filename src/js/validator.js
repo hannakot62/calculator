@@ -125,6 +125,10 @@ class BracketValidator extends Validator {
     ) {
       this.buttonValue = "*(";
     }
+    //проверка на точку
+    else if (this.taskText[this.taskText.length - 1] === ".") {
+      throw new Error("Допишите число");
+    }
     //проверка на пустые скобки
     else if (
       this.buttonValue === ")" &&

@@ -38,7 +38,6 @@ class Button {
       this.btn.className,
       this.btn.id
     );
-    console.log(this.valid);
     this.value = valid.validate();
     //у каждой кнопки свой
     //надо обработать таск и то, что задает кнопка
