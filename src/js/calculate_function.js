@@ -42,7 +42,7 @@ function factorial(num) {
 }
 function power(base, exponent) {
   let result = base ** exponent;
-  if (result != NaN) {
+  if (!Number.isNaN(result)) {
     return result;
   } else {
     throw new Error("Некорректное возведение в степень");

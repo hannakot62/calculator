@@ -404,23 +404,16 @@ html.light .table-btn {
   border: 0.1rem solid rgba(70, 70, 70, 0.5);
   border-radius: 1rem;
 }
-//ааааааааааааааааааааааааааааааааа
 .animation {
   height: 20rem;
   width: 20rem;
-  // display: flex;
-  // justify-content: left;
   z-index: 2;
-  // align-self: flex-end;
   position: fixed;
   bottom: 0;
   left: 0;
 }
 .animation.move {
   transform: translate(300%, -200%);
-  //transform-origin: right top;
-  // justify-content: right;
-  // align-self: start;
   transition: 4s ease;
   top: 0;
   right: 0;
