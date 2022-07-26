@@ -350,6 +350,9 @@ function SimpleCalculationPart(task) {
     task = task.join("");
     operationsLeft--;
   }
+  if (task === "-0") {
+    task = "0";
+  }
   return task;
 }
 //тут жесть
