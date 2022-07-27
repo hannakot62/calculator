@@ -62,4 +62,5 @@ The files used are grouped the next way:
   - **_index.js_** file is used for connectiong all the code dependecies in the project???
   - **_assets_** folder contains the calculator's favicon
   - **_sass_** folder is used for keeping style file named **_main.scss_**
-  - **_js_** folder is used as source code storage
+  - **_js_** folder is used as source code storage. More details on
+    [js folder description](https://github.com/hannakot62/calculator/blob/main/src/js/readme.md)
