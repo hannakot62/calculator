@@ -15,7 +15,7 @@ export { memory };
 let memory = 0;
 
 class Button {
-  constructor(place, cssClass, innerHTML, id, value, ValidatorClass) {
+  constructor(place, cssClass, innerHTML, id, value, validator) {
     let calculatorTable = document.getElementById("tableButtons");
     this.btn = document.createElement("button");
     this.btn.innerHTML = innerHTML;
@@ -24,28 +24,16 @@ class Button {
     //-----------------------------------
     this.value = value;
     this.originalvalue = value;
-    this.ValidatorClass = ValidatorClass;
     //-----------------------------------
+    this.validator = validator;
     calculatorTable.rows[place[0]].childNodes[place[1]].appendChild(this.btn);
     this.btn.addEventListener("click", () => {
       this.listenerFunction();
     });
   }
-  validator() {
-    //передать класс
-    let valid = new this.ValidatorClass(
-      this.value,
-      this.btn.className,
-      this.btn.id
-    );
-    this.value = valid.validate();
-    //у каждой кнопки свой
-    //надо обработать таск и то, что задает кнопка
-    //если надо добавить где-то умножение, скобку или отсечь последний знак -> меняю value
-  }
   listenerFunction() {
     try {
-      this.validator();
+      this.value = this.validator.validate();
       this.addToTask();
     } catch (e) {
       showNotification(e);
@@ -69,14 +57,21 @@ export function showNotification(exceptionText) {
 
 export function createButtons() {
   let buttons = [
-    new Button([0, 0], "memory", "MC", "memoryClear", "MC", MemoryValidator),
+    new Button(
+      [0, 0],
+      "memory",
+      "MC",
+      "memoryClear",
+      "MC",
+      new MemoryValidator("MC", "memory", "memoryClear")
+    ),
     new Button(
       [0, 1],
       "table-btn hard",
       "x<span>2</span>",
       "square",
       "^2",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("^2", "table-btn hard", "square")
     ),
     new Button(
       [0, 2],
@@ -84,22 +79,64 @@ export function createButtons() {
       "√x",
       "radical",
       "^(1/2)",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("^(1/2", "table-btn hard", "radical")
     ),
-    new Button([0, 3], "table-btn", "×", "multiply", "*", OneSignValidator),
-    new Button([0, 4], "calc-number", "1", "one", "1", NumberValidator),
-    new Button([0, 5], "calc-number", "2", "two", "2", NumberValidator),
-    new Button([0, 6], "calc-number", "3", "three", "3", NumberValidator),
-    new Button([0, 7], "calc-simple", "+", "plus", "+", OneSignValidator),
+    new Button(
+      [0, 3],
+      "table-btn",
+      "×",
+      "multiply",
+      "*",
+      new OneSignValidator("*", "table-btn", "multiply")
+    ),
+    new Button(
+      [0, 4],
+      "calc-number",
+      "1",
+      "one",
+      "1",
+      new NumberValidator("1", "calc-number", "one")
+    ),
+    new Button(
+      [0, 5],
+      "calc-number",
+      "2",
+      "two",
+      "2",
+      new NumberValidator("2", "calc-number", "two")
+    ),
+    new Button(
+      [0, 6],
+      "calc-number",
+      "3",
+      "three",
+      "3",
+      new NumberValidator("3", "calc-number", "three")
+    ),
+    new Button(
+      [0, 7],
+      "calc-simple",
+      "+",
+      "plus",
+      "+",
+      new OneSignValidator("+", "calc-simple", "plus")
+    ),
 
-    new Button([1, 0], "memory", "M+", "memoryAdd", "M+", MemoryValidator),
+    new Button(
+      [1, 0],
+      "memory",
+      "M+",
+      "memoryAdd",
+      "M+",
+      new MemoryValidator("M+", "memory", "memoryAdd")
+    ),
     new Button(
       [1, 1],
       "table-btn hard",
       "x<span>3</span>",
       "cube",
       "^3",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("^3", "table-btn hard", "cube")
     ),
     new Button(
       [1, 2],
@@ -107,13 +144,48 @@ export function createButtons() {
       "<span>3</span>√x",
       "cubeRoot",
       "^(1/3)",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("^(1/3", "table-btn hard", "cubeRoot")
     ),
-    new Button([1, 3], "table-btn", "/", "divide", "/", OneSignValidator),
-    new Button([1, 4], "calc-number", "4", "four", "4", NumberValidator),
-    new Button([1, 5], "calc-number", "5", "five", "5", NumberValidator),
-    new Button([1, 6], "calc-number", "6", "six", "6", NumberValidator),
-    new Button([1, 7], "calc-simple", "-", "minus", "-", OneSignValidator),
+    new Button(
+      [1, 3],
+      "table-btn",
+      "/",
+      "divide",
+      "/",
+      new OneSignValidator("/", "table-btn", "divide")
+    ),
+    new Button(
+      [1, 4],
+      "calc-number",
+      "4",
+      "four",
+      "4",
+      new NumberValidator("4", "calc-number", "four")
+    ),
+    new Button(
+      [1, 5],
+      "calc-number",
+      "5",
+      "five",
+      "5",
+      new NumberValidator("5", "calc-number", "five")
+    ),
+    new Button(
+      [1, 6],
+      "calc-number",
+      "6",
+      "six",
+      "6",
+      new NumberValidator("6", "calc-number", "six")
+    ),
+    new Button(
+      [1, 7],
+      "calc-simple",
+      "-",
+      "minus",
+      "-",
+      new OneSignValidator("-", "calc-simple", "minus")
+    ),
 
     new Button(
       [2, 0],
@@ -121,7 +193,7 @@ export function createButtons() {
       "M-",
       "memorySubstract",
       "M-",
-      MemoryValidator
+      new MemoryValidator("M-", "memory", "memorySubstract")
     ),
     new Button(
       [2, 1],
@@ -129,7 +201,7 @@ export function createButtons() {
       "x<span>y</span>",
       "power",
       "^(",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("^(", "table-btn hard", "power")
     ),
     new Button(
       [2, 2],
@@ -137,29 +209,64 @@ export function createButtons() {
       "<span>y</span>√x",
       "anyRoot",
       "^(1/",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("^(1/", "table-btn hard", "anyRoot")
     ),
-    new Button([2, 3], "table-btn", "%", "procent", "%", OneSignValidator),
-    new Button([2, 4], "calc-number", "7", "seven", "7", NumberValidator),
-    new Button([2, 5], "calc-number", "8", "eight", "8", NumberValidator),
-    new Button([2, 6], "calc-number", "9", "nine", "9", NumberValidator),
+    new Button(
+      [2, 3],
+      "table-btn",
+      "%",
+      "procent",
+      "%",
+      new OneSignValidator("%", "table-btn", "procent")
+    ),
+    new Button(
+      [2, 4],
+      "calc-number",
+      "7",
+      "seven",
+      "7",
+      new NumberValidator("7", "calc-number", "seven")
+    ),
+    new Button(
+      [2, 5],
+      "calc-number",
+      "8",
+      "eight",
+      "8",
+      new NumberValidator("8", "calc-number", "eight")
+    ),
+    new Button(
+      [2, 6],
+      "calc-number",
+      "9",
+      "nine",
+      "9",
+      new NumberValidator("9", "calc-number", "nine")
+    ),
     new Button(
       [2, 7],
       "calc-simple",
       "+/-",
       "changeSign",
       "",
-      ChangeSignValidator
+      new ChangeSignValidator("", "calc-simple", "changeSign")
     ),
 
-    new Button([3, 0], "memory", "MR", "memoryRead", "MR", MemoryValidator),
+    new Button(
+      [3, 0],
+      "memory",
+      "MR",
+      "memoryRead",
+      "MR",
+      new MemoryValidator("MR", "memory", "memoryRead")
+    ),
     new Button(
       [3, 1],
       "table-btn hard",
       "10<span>x</span>",
       "tenPower",
       "10^(",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("10^", "table-btn hard", "tenPower")
     ),
     new Button(
       [3, 2],
@@ -167,7 +274,7 @@ export function createButtons() {
       "x!",
       "factorial",
       "!",
-      OneSignValidator
+      new OneSignValidator("!", "table-btn hard", "factorial")
     ),
     new Button(
       [3, 3],
@@ -175,7 +282,7 @@ export function createButtons() {
       "1/x",
       "selfDivide",
       "1/",
-      ComplexOperatorValidator
+      new ComplexOperatorValidator("1/", "table-btn hard", "selfDivide")
     ),
     new Button(
       [3, 4],
@@ -183,7 +290,7 @@ export function createButtons() {
       "(",
       "leftBracket",
       "(",
-      BracketValidator
+      new BracketValidator("(", "calc-simple", "leftBracket")
     ),
     new Button(
       [3, 5],
@@ -191,10 +298,24 @@ export function createButtons() {
       ")",
       "rightBracket",
       ")",
-      BracketValidator
+      new BracketValidator(")", "calc-simple", "rightBracket")
     ),
-    new Button([3, 6], "calc-number", "0", "zero", "0", NumberValidator),
-    new Button([3, 7], "calc-simple", ".", "dot", ".", DotValidator),
+    new Button(
+      [3, 6],
+      "calc-number",
+      "0",
+      "zero",
+      "0",
+      new NumberValidator("0", "calc-number", "zero")
+    ),
+    new Button(
+      [3, 7],
+      "calc-simple",
+      ".",
+      "dot",
+      ".",
+      new DotValidator(".", "calc-simple", "dot")
+    ),
   ];
 }
 

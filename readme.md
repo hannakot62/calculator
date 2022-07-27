@@ -35,7 +35,11 @@ The calculator is supported by the rocket animation. When it comes to a successf
 
 # How to run the app
 
-To run the app you should prepare an IDE and write in the terminal `npm run build`. Also it's available to use `npm run dev`
+To run the app you should prepare an IDE and write in the terminal `npm run build`. Also it's available to use `npm run dev`.
+
+If you want to run eslint formatter you should use `npm run test`.
+
+If you want to run calculate function tests you should use `npm run testing`
 
 # Files & folders description
 

@@ -51,6 +51,8 @@ class NumberValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     // )число или !число-> )*число !*число работает
     if (
       this.taskText[this.taskText.length - 1] === ")" ||
@@ -66,6 +68,8 @@ class EqualsValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     if (this.taskText === "") {
       throw new Error("Пусто :(");
     }
@@ -105,6 +109,8 @@ class BracketValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     //проверка на начало выражения
     if (this.buttonValue === ")" && this.taskText === "") {
       throw new Error(")))");
@@ -163,6 +169,8 @@ class OneSignValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     //проверка на два знака подряд и начало выражения, кроме ), числа и !
     if (
       !(
@@ -181,6 +189,8 @@ class DotValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     //проверка на начало выражения и не число
     if (
       this.taskText === "" ||
@@ -212,6 +222,8 @@ class ChangeSignValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     //проверка на начaло выражения
     if (this.taskText === "") {
       this.buttonValue = "(-";
@@ -271,6 +283,8 @@ class ComplexOperatorValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     if (
       this.taskText != "" &&
       this.taskText[this.taskText.length - 1] === "."
@@ -306,6 +320,8 @@ class MemoryValidator extends Validator {
     super(buttonValue, ButtonCssClass, ButtonId);
   }
   validate() {
+    this.task = document.getElementById("taskResult");
+    this.taskText = this.task.innerHTML;
     switch (this.buttonValue[1]) {
       case "C": {
         memory = 0;
@@ -355,7 +371,6 @@ class MemoryValidator extends Validator {
         break;
       }
     }
-
     return this.buttonValue;
   }
 }
