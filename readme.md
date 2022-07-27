@@ -35,16 +35,15 @@ The calculator is supported by the rocket animation. When it comes to a successf
 
 # How to run the app
 
-To run the app you should prepare an IDE and write in the terminal **_npm run build_** или как или что ааааа
+To run the app you should prepare an IDE and write in the terminal `npm run build`. Also it's available to use `npm run dev`
 
 # Files & folders description
 
 The files used are grouped the next way:
-но это конечно не точно
 
-- **_dist_** folder includes all the build stuff????????
+- **_dist_** folder includes all the build stuff
 
-* **_.husky_** folder contains configurations of pre-commit hook???????????
+* **_.husky_** folder contains configurations of pre-commit hook and other husky configurations
 
 - **_node_modules_** folder is used for all the configurations needed to prepare app building via webpack environment and testing via Jest
 
@@ -59,7 +58,7 @@ The files used are grouped the next way:
 * **_src_** folder is the main container of the source code. It includes:
 
   - **_index.html_** file is responsible for the main page layout
-  - **_index.js_** file is used for connectiong all the code dependecies in the project???
+  - **_index.js_** file is used as the start point for webpack for connecting all the code dependecies in the project
   - **_assets_** folder contains the calculator's favicon
   - **_sass_** folder is used for keeping style file named **_main.scss_**
   - **_js_** folder is used as source code storage. More details on
