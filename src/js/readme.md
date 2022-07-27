@@ -10,13 +10,13 @@ The function takes a task string as an input parametr and prioritizes the operat
 
 The calculation process is devided into four parts: bracket, super-high (is responsible for exponentiation, finding the root and factorial), high (is responsible for multiplication, division, finding a percentage) and simple (is pesponsible for addition and substraction). Each step is supported with the exception check needed.
 
-In bracket calculation part the main idea is that the algorithm finds the first right bracket and then using the index of the bracket the left bracket is found. If there's a numeric operand in the brackets the algorithm passes through it and finds outer brackets or neighbour brackets to the right. The action in brackets is recursionally passed to calculate function.
+-     In bracket calculation part the main idea is that the algorithm finds the first right bracket and then using the index of the bracket the left bracket is found. If there's a numeric operand in the brackets the algorithm passes through it and finds outer brackets or neighbour brackets to the right. The action in brackets is recursionally passed to calculate function.
 
-Next calculation step is super high part, where the algorithm finds the first index of super high calculation operator (as written above its about exponentiation, finding the root and factorial). Checking the symbols from both sides for being a digit or a dot the calculator finds the operands for the action and then calculates it.
+  - Next calculation step is super high part, where the algorithm finds the first index of super high calculation operator (as written above its about exponentiation, finding the root and factorial). Checking the symbols from both sides for being a digit or a dot the calculator finds the operands for the action and then calculates it.
 
-Then it comes to high calculation part (calculating multiply, divide, find a percentage operations) using the same logic as super high calculation part.
+-     Then it comes to high calculation part (calculating multiply, divide, find a percentage operations) using the same logic as super high calculation part.
 
-And the last step is to calculate any simple operation such as addition or substraction.
+  - And the last step is to calculate any simple operation such as addition or substraction.
 
 Each part is responsible for its result being implemented into the initial task editing the preceding sign if needed.
 
