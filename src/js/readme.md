@@ -2,7 +2,7 @@
 
 js folder is used as main source code storage.
 
-- ## calculate_function.js
+:underage: ## calculate_function.js
 
 The file contains the main logical function of the calculator.
 
@@ -20,11 +20,11 @@ The calculation process is devided into four parts: bracket, super-high (is resp
 
 Each part is responsible for its result being implemented into the initial task editing the preceding sign if needed.
 
-- ## calculate.test.js
+:underage: ## calculate.test.js
 
 The file contains tests for calculate function.
 
-- ## buttons.js
+:underage: ## buttons.js
 
 The file contains the source code for calculator buttons creation. Each calculator button is an example of Button class. Its constructor creates a button element taking its place in the calculator table, CSS class, inner HTML, id, value and the class of the validator needed as input parameters.
 
@@ -32,16 +32,16 @@ Each button has an event listener. Its task is to call a validation method and i
 
 Validation method is responsible for creation the validator needed (its classname is passed to the Button constructor) and calling its validate method.
 
-- ## validator.js
+:underage: ## validator.js
 
 The file is used for abstract Validator class and its descendants.
 
 Each descend validator class is responsible for checking the main calculation task and the button's (that called the validator) value for compatibility. If needed something is added to the button value or to the main task or took out of there.
 
-- ## clear_buttons.js
+:underage: ## clear_buttons.js
 
 The file contains clear buttons event listeners. The one button is used for clearing the last symbol and the other is used for the clearing the whole main calculation task.
 
-- ## change_theme.js
+:underage: ## change_theme.js
 
 The file is responsible for changing the calculator's theme. The theme data is stored in browser's local storage. Default theme is light.
