@@ -179,7 +179,17 @@ class OneSignValidator extends Validator {
         Number.isInteger(+this.taskText[this.taskText.length - 1])
       )
     ) {
-      throw new Error("Чего-то не хватает");
+      if (
+        this.taskText[this.taskText.length - 1] === "^" ||
+        this.taskText[this.taskText.length - 1] === "("
+      ) {
+        throw new Error("Чего-то не хватает");
+      } else {
+        this.taskText = this.taskText.split("");
+        this.taskText.pop();
+        this.taskText = this.taskText.join("");
+        this.task.innerHTML = this.taskText;
+      }
     }
     return " " + this.buttonValue;
   }
